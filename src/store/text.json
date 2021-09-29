@@ -1,0 +1,26 @@
+{
+    "about_me": {
+        "fr": "À mon sujet",
+        "en": "About me"
+    },
+    "en_locale": {
+        "fr": "Anglais",
+        "en": "English"
+    },
+    "fr_locale": {
+        "fr": "Français",
+        "en": "French"
+    },
+    "intro_hi": {
+        "fr": "Bonjour, mon nom est",
+        "en": "Hi, my name is"
+    },
+    "intro_i_am": {
+        "fr": "Je suis un Développeur Front-End",
+        "en": "I'm a Front-End Developer"
+    },
+    "projects": {
+        "fr": "Projets",
+        "en": "Projects"
+    }
+}
