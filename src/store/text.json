@@ -11,6 +11,10 @@
         "fr": "Français",
         "en": "French"
     },
+    "front_end_developper": {
+        "fr": "Développeur Front-End",
+        "en": "Front-End Developer"
+    },
     "intro_hi": {
         "fr": "Bonjour, mon nom est",
         "en": "Hi, my name is"
@@ -19,8 +23,24 @@
         "fr": "Je suis un Développeur Front-End",
         "en": "I'm a Front-End Developer"
     },
+    "landing_text_a": {
+        "fr": "Préparez-vous",
+        "en": "Get ready"
+    },
+    "landing_text_b": {
+        "fr": "À transformer vos idées en réalité",
+        "en": "To turn your ideas into reality"
+    },
+    "personnal_project": {
+        "fr": "Projet personnel",
+        "en": "Personnal project"
+    },
     "projects": {
         "fr": "Projets",
         "en": "Projects"
+    },
+    "projects_title": {
+        "fr": "Mes travaux",
+        "en": "My works"
     }
 }

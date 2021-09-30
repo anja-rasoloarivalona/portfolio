@@ -1,13 +1,15 @@
 import React from "react"
 import styled from "styled-components"
 import Project from './Project'
+import { useSelector } from 'react-redux'
+import bizbizshare from '../../assets/bizbizshare.PNG'
+import woto from '../../assets/woto.PNG'
 
 const Container = styled.div`
     width: 100vw;
-    height: 100vh;
     display: flex;
     justify-content: center;
-    padding-top: 10rem;
+    background: ${props => props.theme.lightBlue};
 `
 
 const Content = styled.div`
@@ -37,19 +39,45 @@ const HeaderBar = styled.div`
 `
 
 const Projects = () => {
+
+    const {
+        text
+    } = useSelector(state => state)
+
+    const projects = [
+        {
+            image: bizbizshare,
+            title: "BizbizShare",
+            subtitle: text.front_end_developper,
+            text: "Le lorem ipsum est, en imprimerie, une suite de mots sans signification utilisée à titre provisoire pour calibrer une mise en page, le texte définitif venant remplacer le faux-texte dès qu'il est prêt ou que la mise en page est achevée."
+        },
+        {
+            image: woto,
+            title: "Woto motors",
+            subtitle: text.personnal_project,
+            text: "Le lorem ipsum est, en imprimerie, une suite de mots sans signification utilisée à titre provisoire pour calibrer une mise en page, le texte définitif venant remplacer le faux-texte dès qu'il est prêt ou que la mise en page est achevée."
+        }
+    ]
+
     return (
         <Container>
             <Content>
                 <Header>
-                    <HeaderTitle>Some stuff I've built</HeaderTitle>
+                    <HeaderTitle>{text.projects_title}</HeaderTitle>
                     <HeaderBar  />
                 </Header>
-                <Project 
-                    image="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/1200px-Image_created_with_a_mobile_phone.png"
-                    title="Monetor"
-                    subtitle="Personnal project"
-                    text="Le lorem ipsum est, en imprimerie, une suite de mots sans signification utilisée à titre provisoire pour calibrer une mise en page, le texte définitif venant remplacer le faux-texte dès qu'il est prêt ou que la mise en page est achevée."
-                />
+
+                {projects.map((project, index) => (
+                    <Project 
+                        key={index}
+                        index={index}
+                        image={project.image}
+                        title={project.title}
+                        subtitle={project.subtitle}
+                        text={project.text}
+                    />
+                ))}
+                
             </Content>
          </Container>
      )

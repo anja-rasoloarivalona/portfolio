@@ -6,22 +6,38 @@ const Container = styled.div`
     position: relative;
     display: flex;
     justify-content: flex-end;
-    height: 35rem;
+    height: 34rem;
+    margin-bottom: 20vh;
+
+    ${({ leftText }) => {
+        if(leftText){
+            return {
+                justifyContent: "flex-start",
+                ".image-container": {
+                    right: 0,
+                    left: "unset"
+                },
+                ".content": {
+                    alignItems: "flex-start"
+                }
+            }
+        }
+    }}
 `
 
 const ImageContainer = styled.div`
     position: absolute;
-    width: 60%;
+    width: 63%;
     height: 100%;
     left: 0;
     top: 0;
-    border-radius: 
 `
 
 const Image = styled.img`
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
+    border-radius: .5rem;
 `
 
 const Content = styled.div`
@@ -77,8 +93,6 @@ const CtaButton = styled.div`
     }
 `
 
-
-
 const CtaIcon = styled.div`
     position: absolute;
     top: 0;
@@ -101,13 +115,16 @@ const CtaIconBar = styled.div`
 `
 
 const Project = props => {
-    const {image, subtitle, title, text, technologies } = props
+
+    const {image, subtitle, title, text, technologies, index } = props
+    const leftText = index % 2 !== 0
+
     return (
-        <Container>
-            <ImageContainer>
+        <Container leftText={leftText}>
+            <ImageContainer className="image-container">
                 <Image src={image}/>
             </ImageContainer>
-            <Content>
+            <Content className="content">
                 <SubTitle>{subtitle}</SubTitle>
                 <Title>{title}</Title>
                 <Text>{text}</Text>

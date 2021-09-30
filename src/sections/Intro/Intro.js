@@ -179,7 +179,7 @@ const Home = props => {
                 </Cta>
             </Content>
       
-            <Project
+            {/* <Project
                 hovered={hovered}
                 onMouseLeave={() => setHovered(false)}
             >
@@ -192,7 +192,7 @@ const Home = props => {
                 </ProjectButton>
                 <ProjectBar className="bar"/>
                 <ProjectArrow icon="chevron-down" className="arrow"/>
-            </Project>
+            </Project> */}
         </Container>
      )
 };
