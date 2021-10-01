@@ -1,26 +1,11 @@
-import React, { useEffect } from "react"
+import React from "react"
 import { Tween } from 'react-gsap'
 import { useWindowSize } from './hooks'
 
 
-const ApppAnimation = props => {
+const ApppAnimation = () => {
 
-    const { setScroll } = props
     const { windowHeight } = useWindowSize()
-
-    useEffect(() => {
-        document.addEventListener("scroll", listen)
-        return () => {
-            document.removeEventListener("scroll", listen);
-        };
-    }, [])
-
-
-    const listen = () => {
-        const scrollY = window.pageYOffset
-        setScroll(scrollY)
-    }
-
 
     const trigger = {
         trigger: '.landing',

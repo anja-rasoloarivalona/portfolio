@@ -1,5 +1,4 @@
 import React, {useState, useEffect, useRef } from "react"
-import { scroller } from "react-scroll";
 import { useSelector, useDispatch } from 'react-redux'
 import styled, { ThemeProvider } from "styled-components";
 import Landing from "./sections/Landing/Landing";
@@ -14,6 +13,8 @@ import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 import ApppAnimation from './ApppAnimation'
 import Intro from './sections/Intro/Intro'
 import Projects from './sections/Projects/Projects'
+import Skills from './sections/Skills/Skills'
+import ContactMe from './sections/ContactMe/ContactMe'
 gsap.registerPlugin(ScrollTrigger);
 library.add(fas);
 
@@ -68,7 +69,17 @@ const Appp = () => {
         const storedLocale = localStorage.getItem("anja-locale")
         const initialLocale = storedLocale && storedLocale !== "undefined" ? storedLocale : locale 
         dispatch(actions.setText(initialLocale))
+        document.addEventListener("scroll", listen)
+        return () => {
+            document.removeEventListener("scroll", listen);
+        };
     },[])
+
+    const listen = () => {
+        const scrollY = window.pageYOffset
+        setScroll(scrollY)
+    }
+
 
     if(!text){
         return null
@@ -76,12 +87,6 @@ const Appp = () => {
 
 
     const displayContent = scroll >= windowHeight
-
-    console.log({
-        scroll,
-        windowHeight,
-        displayContent
-    })
 
     return (
         <ThemeProvider  theme={theme}>
@@ -104,7 +109,9 @@ const Appp = () => {
                 </Timeline>
                 {displayContent && (
                     <>
-                        <Projects />
+                        <Projects scroll={scroll} />
+                        <Skills />
+                        <ContactMe />
                     </>
                 )}
             </Container>

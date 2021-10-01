@@ -3,6 +3,14 @@
         "fr": "À mon sujet",
         "en": "About me"
     },
+    "back_end": {
+        "fr": "Front-end",
+        "en": "Back-end"
+    },
+    "email": {
+        "fr": "Email",
+        "en": "Email"
+    },
     "en_locale": {
         "fr": "Anglais",
         "en": "English"
@@ -11,9 +19,13 @@
         "fr": "Français",
         "en": "French"
     },
+    "front_end": {
+        "fr": "Front-end",
+        "en": "Back-end"
+    },
     "front_end_developper": {
-        "fr": "Développeur Front-End",
-        "en": "Front-End Developer"
+        "fr": "Développeur Front-end",
+        "en": "Front-end Developer"
     },
     "intro_hi": {
         "fr": "Bonjour, mon nom est",
@@ -31,6 +43,14 @@
         "fr": "À transformer vos idées en réalité",
         "en": "To turn your ideas into reality"
     },
+    "message": {
+        "fr": "Message",
+        "en": "Message"
+    },
+    "name": {
+        "fr": "Nom",
+        "en": "Name"
+    },
     "personnal_project": {
         "fr": "Projet personnel",
         "en": "Personnal project"
@@ -42,5 +62,13 @@
     "projects_title": {
         "fr": "Mes travaux",
         "en": "My works"
+    },
+    "send": {
+        "fr": "Envoyer",
+        "en": "Send"
+    },
+    "tools": {
+        "fr": "Outils",
+        "en": "Tools"
     }
 }

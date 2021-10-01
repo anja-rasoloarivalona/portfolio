@@ -1,6 +1,8 @@
-import React from "react"
+import React, { useState, useEffect } from "react"
 import styled from "styled-components"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import SlideAnimation from '../../components/SlideAnimation'
+import { useWindowSize } from '../../hooks'
 
 const Container = styled.div`
     position: relative;
@@ -23,6 +25,10 @@ const Container = styled.div`
             }
         }
     }}
+
+    * {
+        position: relative;
+    }
 `
 
 const ImageContainer = styled.div`
@@ -38,6 +44,19 @@ const Image = styled.img`
     height: 100%;
     object-fit: contain;
     border-radius: .5rem;
+    opacity: 0;
+    transform: scale(.8);
+    transition: all .5s linear;
+    // transition-delay: .25s;
+
+    ${({ trigger }) => {
+        if(trigger){
+            return {
+                opacity: 1,
+                transform: "scale(1)"
+            }
+        }
+    }}
 `
 
 const Content = styled.div`
@@ -62,6 +81,7 @@ const SubTitle = styled.div`
     color: ${props => props.theme.green};
     font-size: 1.5rem;
     line-height: 1.4;
+    margin-bottom: 2px;
 `
 
 const Text = styled.div`
@@ -71,8 +91,11 @@ const Text = styled.div`
     padding: 2rem;
     line-height: 1.6;
     color: ${props => props.theme.brightGrey};
-    box-shadow: ${props => props.theme.boxShadow};
     border-radius: .8rem;
+
+    &.show {
+        box-shadow: ${props => props.theme.boxShadow};
+    }
 `
 
 const Cta = styled.div`
@@ -114,28 +137,61 @@ const CtaIconBar = styled.div`
     background: ${props => props.theme.lightGrey};
 `
 
+const Trigger = styled.div`
+    position: absolute;
+    top: ${({ windowHeight }) => `-${windowHeight * .75}px`};
+    left: 0;
+    width: 100%;
+    height: 0px;
+`
+
 const Project = props => {
 
-    const {image, subtitle, title, text, technologies, index } = props
+    const [triggerAnimation, setTriggerAnimation ] = useState(false)
+
+    const { windowHeight } = useWindowSize()
+
+    const {image, subtitle, title, text, technologies, index, scroll } = props
     const leftText = index % 2 !== 0
+    const id = `project-${index}`
+
+
+    useEffect(() => {
+        const el = document.getElementById(id)
+        const elDom = el.getBoundingClientRect()
+        if(elDom.top <= 0){
+            setTriggerAnimation(true)
+        }
+    },[scroll])
 
     return (
         <Container leftText={leftText}>
+            <Trigger windowHeight={windowHeight} id={id}/>
             <ImageContainer className="image-container">
-                <Image src={image}/>
+                <Image src={image} trigger={triggerAnimation} />
             </ImageContainer>
             <Content className="content">
-                <SubTitle>{subtitle}</SubTitle>
-                <Title>{title}</Title>
-                <Text>{text}</Text>
+                <SubTitle>
+                    {subtitle}
+                    <SlideAnimation trigger={triggerAnimation}/>
+                </SubTitle>
+                <Title>
+                    {title}
+                    <SlideAnimation trigger={triggerAnimation}/>
+                </Title>
+                <Text>
+                    {text}
+                    <SlideAnimation trigger={triggerAnimation}/>
+                </Text>
                 <Cta>
+                    <SlideAnimation trigger={triggerAnimation}/>
                     <CtaButton>
                         Case study
                     </CtaButton>
-                    <CtaIcon>
+                    {/* <CtaIcon>
                         <CtaIconBar />
                         <FontAwesomeIcon icon="chevron-right"/>
-                    </CtaIcon>
+                    </CtaIcon> */}
                 </Cta>
             </Content>
         </Container>

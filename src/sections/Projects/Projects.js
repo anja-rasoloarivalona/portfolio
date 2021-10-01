@@ -38,7 +38,9 @@ const HeaderBar = styled.div`
     background: ${props => props.theme.brightBlue};
 `
 
-const Projects = () => {
+const Projects = props => {
+
+    const { scroll } = props
 
     const {
         text
@@ -75,6 +77,7 @@ const Projects = () => {
                         title={project.title}
                         subtitle={project.subtitle}
                         text={project.text}
+                        scroll={scroll}
                     />
                 ))}
                 
