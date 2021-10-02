@@ -12,7 +12,7 @@ const Container = styled.div`
     ${({ t1, t2 }) => {
         let pos = 0
         if(t1) pos = 100
-        if(t2) pos = 200
+        if(t2) pos = 201
         return {
             "> *": {
                 transform: `translateX(${pos}%)`

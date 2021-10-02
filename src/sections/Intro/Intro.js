@@ -21,6 +21,8 @@ const Content = styled.div`
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    width: 95%;
+    max-width: 90rem;
 `
 
 const IntroText = styled.div`

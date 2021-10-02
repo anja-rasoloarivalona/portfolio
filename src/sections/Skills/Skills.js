@@ -21,13 +21,15 @@ const Container = styled.div`
         top: 0;
         left: 0;
         width: 100%;
-        height: 30rem;
+        height: 20rem;
         background: ${({ theme }) => theme.lightBlue};
         z-index: 1;
     }
 `
 
 const Content = styled.div`
+    width: 95%;
+    max-width: 120rem;
     display: flex;
     position: relative;
     z-index: 2;
@@ -37,13 +39,13 @@ const Content = styled.div`
     box-shadow: ${({ theme }) => theme.boxShadow};
 `
 
+
+
 const Section = styled.div`
     width: 100%;
     display: flex;
     flex-direction: column;
     padding: 4rem 2rem;
-    width: 30vw;
-    max-width: 35rem;
 `
 
 const IconContainer = styled.div`
@@ -53,6 +55,7 @@ const IconContainer = styled.div`
     svg {
         width: 4rem;
         height: 4rem;
+        fill: ${({ theme }) => theme.brightBlue};
     }
 `
 
@@ -61,6 +64,7 @@ const Title = styled.div`
     font-weight: bold;
     margin: 2rem 0;
     text-align: center;
+    color: ${({ theme }) => theme.brightBlue};
 `
 
 const SubTitle = styled.div`

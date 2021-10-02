@@ -4,7 +4,7 @@
         "en": "About me"
     },
     "back_end": {
-        "fr": "Front-end",
+        "fr": "Back-end",
         "en": "Back-end"
     },
     "email": {
@@ -21,7 +21,7 @@
     },
     "front_end": {
         "fr": "Front-end",
-        "en": "Back-end"
+        "en": "Front-end"
     },
     "front_end_developper": {
         "fr": "Développeur Front-end",
@@ -66,6 +66,10 @@
     "send": {
         "fr": "Envoyer",
         "en": "Send"
+    },
+    "today": {
+        "fr": "Aujourd'hui",
+        "en": "Today"
     },
     "tools": {
         "fr": "Outils",
