@@ -15,14 +15,6 @@ const setText = locale => {
     }
 }
 
-const setCurrentSection = section => {
-    return {
-        type: actionTypes.SET_CURRENT_SECTION,
-        section
-    }
-}
-
 export {
-    setText,
-    setCurrentSection
+    setText
 }

@@ -42,7 +42,7 @@ const Slide = styled.div`
 
 const SlideAnimation = props => {
 
-    const { trigger } = props
+    const { trigger, quick } = props
 
     const [ t1, setT1] = useState(null)
     const [ t2, setT2 ] = useState(false)
@@ -55,16 +55,17 @@ const SlideAnimation = props => {
 
     useEffect(() => {
         if(t1){
+            const delay = quick ? 550 : 750
             setTimeout(() => {
                 setT2(true)
-            },750)
+            },delay)
         }
     },[t1])
 
     return (
-        <Container t1={t1} t2={t2}>
-            <Slide className="first"/>
-            <Slide className="second"/>
+        <Container t1={t1} t2={t2} >
+            <Slide className="slide first"/>
+            <Slide className="slide second"/>
         </Container>
      )
 };

@@ -135,7 +135,7 @@ const Skills = () => {
     ]
 
     return (
-        <Container>
+        <Container id="skills">
             <Content>
                 <Header>
                     <HeaderBar  />

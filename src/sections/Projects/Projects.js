@@ -10,6 +10,7 @@ const Container = styled.div`
     display: flex;
     justify-content: center;
     background: ${props => props.theme.lightBlue};
+    scroll-margin: 3rem;
 `
 
 const Content = styled.div`
@@ -62,7 +63,7 @@ const Projects = props => {
     ]
 
     return (
-        <Container>
+        <Container id="projects">
             <Content>
                 <Header>
                     <HeaderTitle>{text.projects_title}</HeaderTitle>

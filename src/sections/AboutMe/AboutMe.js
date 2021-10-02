@@ -12,6 +12,7 @@ const Container = styled.div`
     justify-content: center;
     padding: 4rem 0;
     background: ${({ theme }) => theme.lightBlue};
+    scroll-margin: 3rem;
 `
 const Content = styled.div`
     width: 95%;
@@ -112,7 +113,7 @@ const AboutMe = props => {
     // }
 
     return (
-        <Container>
+        <Container id="about-me">
             <Content>
                 <Header>
                     <HeaderTitle>{text.about_me}</HeaderTitle>

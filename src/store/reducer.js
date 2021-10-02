@@ -1,5 +1,8 @@
 import * as actionTypes from './actionTypes'
 
+const storedLocale = localStorage.getItem("anja-locale")
+const initialLocale = storedLocale && storedLocale !== "undefined" ? storedLocale : "en" 
+
 const updatedObject = (oldObject, updatedProperties) => {
     return {
         ...oldObject,
@@ -8,9 +11,8 @@ const updatedObject = (oldObject, updatedProperties) => {
 }
 
 const initialState = {
-    locale: "en",
+    locale: initialLocale,
     text: null,
-    currentSection: "intro"
 }
 
 const setText = (state, action) => {
@@ -22,7 +24,6 @@ const setText = (state, action) => {
 const reducer = (state = initialState, action) => {
     switch(action.type){
         case actionTypes.SET_TEXT: return setText(state, action)
-        case actionTypes.SET_CURRENT_SECTION: return updatedObject(state, {currentSection: action.section})
         default: return state
     }
 }

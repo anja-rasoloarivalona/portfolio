@@ -18,6 +18,8 @@ import ContactCta from './sections/ContactCta/ContactCta'
 import ContactMe from './sections/ContactMe/ContactMe'
 import AboutMe from './sections/AboutMe/AboutMe'
 import SideBars from './elements/Sidebars/SideBars'
+import Logo from './elements/Logo'
+import Navbar from './elements/Navbar'
 
 gsap.registerPlugin(ScrollTrigger);
 library.add(fas);
@@ -71,20 +73,20 @@ const Appp = () => {
     const [ scroll, setScroll ] = useState(0)
     
     useEffect(() => {
-        const storedLocale = localStorage.getItem("anja-locale")
-        const initialLocale = storedLocale && storedLocale !== "undefined" ? storedLocale : locale 
-        dispatch(actions.setText(initialLocale))
         document.addEventListener("scroll", listen)
         return () => {
             document.removeEventListener("scroll", listen);
         };
     },[])
 
+    useEffect(() => {
+        dispatch(actions.setText(locale))
+    },[locale])
+
     const listen = () => {
         const scrollY = window.pageYOffset
         setScroll(scrollY)
     }
-
 
     if(!text){
         return null
@@ -96,6 +98,8 @@ const Appp = () => {
     return (
         <ThemeProvider  theme={theme}>
             <SideBars scroll={scroll} />
+            <Logo />
+            <Navbar />
             <Container>
                 <Timeline
                     target={(

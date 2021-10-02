@@ -2,7 +2,6 @@ import React, { useState } from "react"
 import styled from "styled-components"
 import { FontAwesomeIcon  } from '@fortawesome/react-fontawesome'
 import { useSelector, useDispatch } from 'react-redux'
-import * as actions from '../../store/actions'
 
 const Container = styled.div`
     width: 100vw;
@@ -87,77 +86,9 @@ const CtaIconBar = styled.div`
     background: ${props => props.theme.lightGrey};
 `
 
-
-const Project = styled.div`
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    margin: auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    transition: all .3s linear;
-    
-    ${props => {
-        if(props.hovered){
-            return {
-                transform: "translateY(-1rem)",
-                ".button": {
-                    borderColor: props.theme.white,
-                },
-                ".bar": {
-                    background: props.theme.white,
-                },
-                ".arrow": {
-                    transform: "translateY(2.5rem)"
-                }
-            }
-        }
-    }}
-`
-
-const ProjectButton = styled.div`
-    padding: 1rem 2rem;
-    background: transparent;
-    border: 1px solid  transparent;
-    border-radius: .5rem;
-    color: ${props => props.theme.lightGrey};
-    font-size: 2rem;
-    cursor: pointer;
-    position: relative;
-    transition: all .3s linear;
-    :hover {
-        color: ${props => props.theme.white};
-        border: 1px solid  ${props => props.theme.white};
-    }
-`
-
-const ProjectBar = styled.div`
-    width: 1px;
-    height: 12rem;
-    background: ${props => props.theme.brightBlue};
-    transition: all .3s linear;
-`
-const ProjectArrow = styled(FontAwesomeIcon)`
-    font-size: 3rem;
-    position: absolute;
-    bottom: 1rem;
-    left: 0;
-    right: 0;
-    margin: auto;
-    color: ${props => props.theme.white};
-    transform: translateY(4rem);
-    transition: all .3s linear;
-`
-
-
 const Home = props => {
-    const { scrollHandler } = props
 
     const dispatch = useDispatch()
-
-    const [ hovered, setHovered ] = useState(false)
     const { text } = useSelector(s => s)
 
     return (
@@ -171,8 +102,8 @@ const Home = props => {
                     {text.intro_i_am}
                 </SubTitle>
                 <Cta>
-                    <CtaButton onClick={() => dispatch(actions.setCurrentSection("aboutMe"))}>
-                        {text.about_me}
+                    <CtaButton>
+                        {text.contact}
                     </CtaButton>
                     <CtaIcon>
                         <CtaIconBar />
@@ -180,21 +111,6 @@ const Home = props => {
                     </CtaIcon>
                 </Cta>
             </Content>
-      
-            {/* <Project
-                hovered={hovered}
-                onMouseLeave={() => setHovered(false)}
-            >
-                <ProjectButton
-                    onClick={() => scrollHandler("end")}
-                    onMouseEnter={() => setHovered(true)}
-                    className="button"
-                >
-                    {text.projects}
-                </ProjectButton>
-                <ProjectBar className="bar"/>
-                <ProjectArrow icon="chevron-down" className="arrow"/>
-            </Project> */}
         </Container>
      )
 };

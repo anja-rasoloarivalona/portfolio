@@ -7,6 +7,10 @@
         "fr": "Back-end",
         "en": "Back-end"
     },
+    "contact": {
+        "fr": "Contact",
+        "en": "contact"
+    },
     "contact_cta_title": {
         "fr": "Commencer un projet",
         "en": "Start a project"
