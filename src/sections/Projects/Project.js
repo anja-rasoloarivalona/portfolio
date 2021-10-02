@@ -47,7 +47,7 @@ const Image = styled.img`
     opacity: 0;
     transform: scale(.8);
     transition: all .5s linear;
-    // transition-delay: .25s;
+    transition-delay: .5s;
 
     ${({ trigger }) => {
         if(trigger){
@@ -92,9 +92,13 @@ const Text = styled.div`
     line-height: 1.6;
     color: ${props => props.theme.brightGrey};
     border-radius: .8rem;
+    transition-delay: 1s;
 
     &.show {
+        transition: all .3s ease-in;
+        transition-delay: 1s;
         box-shadow: ${props => props.theme.boxShadow};
+        background: ${props => props.theme.blue};
     }
 `
 
@@ -179,7 +183,7 @@ const Project = props => {
                     {title}
                     <SlideAnimation trigger={triggerAnimation}/>
                 </Title>
-                <Text>
+                <Text className={triggerAnimation ? "show" : ""}>
                     {text}
                     <SlideAnimation trigger={triggerAnimation}/>
                 </Text>

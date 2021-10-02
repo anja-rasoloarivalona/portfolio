@@ -10,7 +10,8 @@ const Container = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 4rem 0;
+    padding: 4rem 0;
+    background: ${({ theme }) => theme.lightBlue};
 `
 const Content = styled.div`
     width: 95%;
@@ -29,13 +30,13 @@ const HeaderTitle = styled.div`
     margin-right: 1.5rem;
     font-size: 3rem;
     font-weight: 700;
-    color: ${props => props.theme.brightBlue};
+    color: ${props => props.theme.brightGrey};
 `
 
 const HeaderBar = styled.div`
     flex: 1;
     height: 1px;
-    background: ${props => props.theme.lightGrey};
+    background: ${props => props.theme.brightBlue};
 `
 
 const TextContainer = styled.div``
@@ -44,6 +45,7 @@ const Text = styled.span`
     font-size: 1.4rem;
     line-height: 1.4;
     text-align: justify;
+    color: ${props => props.theme.brightGrey};
 `
 
 const ViewContainer = styled.div`
@@ -57,6 +59,8 @@ const View = styled.div`
     font-size: 1.4rem;
     line-height: 1.4;
     text-align: justify;
+    color: ${props => props.theme.brightGrey};
+
 `
 
 const AboutMe = props => {

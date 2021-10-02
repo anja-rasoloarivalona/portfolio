@@ -19,12 +19,12 @@ const ListItem = styled.li`
     border-bottom-right-radius: .5rem;
     font-weight: bold;
     :hover {
-        background: ${({ theme }) => theme.white};
+        color: white;
     }
     ${({ active, theme }) => {
         if(active){
             return {
-                color: theme.darkGreen + "!important"
+                color: theme.green + "!important"
             }
         }
     }}
@@ -35,7 +35,7 @@ const ListScroll = styled.div`
     left: 0;
     width: 2px;
     height: 100%;
-    background: ${({ theme }) => theme.grey};
+    background: ${({ theme }) => theme.brightBlue};
     z-index: 1;
     border-radius: .5rem;
     overflow: hidden;
@@ -48,7 +48,7 @@ const ListScrollThumb = styled.div`
     top: 0;
     left: 0;
     z-index: 2;
-    background: ${({ theme }) => theme.darkGreen};
+    background: ${({ theme }) => theme.green};
     border-radius: .5rem;
     transform: translateY(${({ periodIndex }) => periodIndex * 6}rem);
     transition: all .3s ease-in;

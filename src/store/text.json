@@ -7,6 +7,22 @@
         "fr": "Back-end",
         "en": "Back-end"
     },
+    "contact_cta_title": {
+        "fr": "Commencer un projet",
+        "en": "Start a project"
+    },
+    "contact_cta_text": {
+        "fr": "Intéressé à travailler ensemble ? On pourrait en discuter autour d'une bonne tasse de café. C'est moi qui offre.",
+        "en": "Interested in working together? We should queue up a chat. I'll buy the coffee."
+    },
+    "contact_cta_button": {
+        "fr": "Allons-y",
+        "en": "Let's do this"
+    },
+    "download_cv": {
+        "fr": "Télécharger CV",
+        "en": "Download CV"
+    },
     "email": {
         "fr": "Email",
         "en": "Email"
@@ -46,6 +62,10 @@
     "message": {
         "fr": "Message",
         "en": "Message"
+    },
+    "my_skills": {
+        "fr": "Mes compétences",
+        "en": "My skills"
     },
     "name": {
         "fr": "Nom",

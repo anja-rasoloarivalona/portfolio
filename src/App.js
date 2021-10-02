@@ -14,8 +14,11 @@ import AppAnimation from './AppAnimation'
 import Intro from './sections/Intro/Intro'
 import Projects from './sections/Projects/Projects'
 import Skills from './sections/Skills/Skills'
+import ContactCta from './sections/ContactCta/ContactCta'
 import ContactMe from './sections/ContactMe/ContactMe'
 import AboutMe from './sections/AboutMe/AboutMe'
+import SideBars from './elements/Sidebars/SideBars'
+
 gsap.registerPlugin(ScrollTrigger);
 library.add(fas);
 
@@ -92,6 +95,7 @@ const Appp = () => {
 
     return (
         <ThemeProvider  theme={theme}>
+            <SideBars scroll={scroll} />
             <Container>
                 <Timeline
                     target={(
@@ -114,7 +118,8 @@ const Appp = () => {
                         <Projects scroll={scroll} />
                         <Skills />
                         <AboutMe />
-                        <ContactMe />
+                        <ContactCta />
+                        {/* <ContactMe /> */}
                     </>
                 )}
             </Container>

@@ -5,47 +5,65 @@ import Icon from '../../icons'
 
 const Container = styled.div`
     width: 100vw;
+    height: 100vh;
     display: flex;
     justify-content: center;
+    align-items: center;
     position: relative;
-    padding-bottom: 6rem;
-
+    background: ${({ theme }) => theme.lightBlue};
 
     * {
         line-height: 1.4;
     }
-
-    :before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 20rem;
-        background: ${({ theme }) => theme.lightBlue};
-        z-index: 1;
-    }
 `
 
 const Content = styled.div`
-    width: 95%;
-    max-width: 120rem;
     display: flex;
+    flex-direction: column;
+    align-items: center;
     position: relative;
     z-index: 2;
-    background: white;
     border-radius: .5rem;
     overflow: hidden;
-    box-shadow: ${({ theme }) => theme.boxShadow};
 `
 
+const Header = styled.div`
+    width: 100%;
+    max-width: 50rem;
+    display: flex;
+    align-items: center;
+    margin-bottom: 10rem;
+`
 
+const HeaderTitle = styled.div`
+    width: max-content;
+    margin: 0 1.5rem;
+    font-size: 3rem;
+    font-weight: 700;
+    color: ${props => props.theme.brightGrey};
+`
+
+const HeaderBar = styled.div`
+    flex: 1;
+    height: 1px;
+    background: ${props => props.theme.brightBlue};
+`
+
+const Sections = styled.div`
+    display: flex;
+    width: 95%;
+    max-width: 120rem;
+`
 
 const Section = styled.div`
     width: 100%;
     display: flex;
     flex-direction: column;
     padding: 4rem 2rem;
+    background: white;
+    box-shadow: ${({ theme }) => theme.boxShadow};
+    margin: 0 2rem;
+    border-radius: .5rem;
 `
 
 const IconContainer = styled.div`
@@ -95,7 +113,7 @@ const Skills = () => {
             title: text.front_end,
             subTitle: "Le lorem ipsum est, en imprimerie, une suite de mots sans signification utilisée à titre provisoire pour calibrer une mise en page, le texte définitif venant remplacer le faux-texte dès qu'il",
             list: [
-                "ES6 - Javascript", "React - Redux", "React Native", "Vue.js", "jQuery", "CSS / Sass"
+                "ES6 - Javascript", "React - Redux", "React Native", "Vue.js", "Elastic Search", "jQuery", "CSS / Sass"
             ]
         },
         {
@@ -103,7 +121,7 @@ const Skills = () => {
             title: text.back_end,
             subTitle: "Le lorem ipsum est, en imprimerie, une suite de mots sans signification utilisée à titre provisoire pour calibrer une mise en page, le texte définitif venant remplacer le faux-texte dès qu'il",
             list: [
-                "Node.js", "Express", "SQL", "MongoDB", "graphQL"
+                "Node.js", "Express", "SQL", "MongoDB", "graphQL", "SendGrid", "Socket"
             ]
         },
         {
@@ -111,7 +129,7 @@ const Skills = () => {
             title: text.tools,
             subTitle: "Le lorem ipsum est, en imprimerie, une suite de mots sans signification utilisée à titre provisoire pour calibrer une mise en page, le texte définitif venant remplacer le faux-texte dès qu'il",
             list: [
-                "Elastic Search", "GitLab", "BitBucket"
+                "Git", "GitLab", "BitBucket", "Visual Studio Code"
             ]
         }
     ]
@@ -119,22 +137,29 @@ const Skills = () => {
     return (
         <Container>
             <Content>
-                {sections.map(section => (
-                    <Section key={section.id}>
-                        <IconContainer>
-                            <Icon icon={section.id}/>
-                        </IconContainer>
-                        <Title>{section.title}</Title>
-                        <SubTitle>{section.subTitle}</SubTitle>
-                        <List>
-                            {section.list.map((listItem, index) => (
-                                <ListItem key={index}>
-                                    {listItem}
-                                </ListItem>
-                            ))}
-                        </List>
-                    </Section>
-                ))}
+                <Header>
+                    <HeaderBar  />
+                    <HeaderTitle>{text.my_skills}</HeaderTitle>
+                    <HeaderBar  />
+                </Header>
+                <Sections>
+                    {sections.map(section => (
+                        <Section key={section.id}>
+                            <IconContainer>
+                                <Icon icon={section.id}/>
+                            </IconContainer>
+                            <Title>{section.title}</Title>
+                            <SubTitle>{section.subTitle}</SubTitle>
+                            <List>
+                                {section.list.map((listItem, index) => (
+                                    <ListItem key={index}>
+                                        {listItem}
+                                    </ListItem>
+                                ))}
+                            </List>
+                        </Section>
+                    ))}
+                </Sections>
             </Content>
         </Container>
      )
