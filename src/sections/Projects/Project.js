@@ -9,7 +9,6 @@ const Container = styled.div`
     display: flex;
     justify-content: flex-end;
     height: 34rem;
-    margin-bottom: 20vh;
 
     ${({ leftText }) => {
         if(leftText){
@@ -26,8 +25,15 @@ const Container = styled.div`
         }
     }}
 
+    ${({ isLast }) => {
+        return {
+            marginBottom: isLast ? "5vh" : "20vh",
+        }
+    }}
+
     * {
         position: relative;
+        z-index: 2;
     }
 `
 
@@ -104,7 +110,6 @@ const Text = styled.div`
 
 const Cta = styled.div`
     margin-top: 1rem;
-    position: relative;
 `
 
 const CtaButton = styled.div`
@@ -120,26 +125,6 @@ const CtaButton = styled.div`
     }
 `
 
-const CtaIcon = styled.div`
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 90%;
-    margin: auto;
-    z-index: 2;
-    display: flex;
-    align-items: center;
-
-    svg {
-        font-size: 1.4rem;
-    }
-`
-
-const CtaIconBar = styled.div`
-    width: 3rem;
-    height: 2px;
-    background: ${props => props.theme.lightGrey};
-`
 
 const Trigger = styled.div`
     position: absolute;
@@ -150,15 +135,12 @@ const Trigger = styled.div`
 `
 
 const Project = props => {
-
-    const [triggerAnimation, setTriggerAnimation ] = useState(false)
-
+    const {image, subtitle, title, text, index, scroll , isLast} = props
     const { windowHeight } = useWindowSize()
 
-    const {image, subtitle, title, text, technologies, index, scroll } = props
+    const [triggerAnimation, setTriggerAnimation ] = useState(false)
     const leftText = index % 2 !== 0
     const id = `project-${index}`
-
 
     useEffect(() => {
         const el = document.getElementById(id)
@@ -169,7 +151,7 @@ const Project = props => {
     },[scroll])
 
     return (
-        <Container leftText={leftText}>
+        <Container leftText={leftText} isLast={isLast}>
             <Trigger windowHeight={windowHeight} id={id}/>
             <ImageContainer className="image-container">
                 <Image src={image} trigger={triggerAnimation} />
@@ -188,14 +170,10 @@ const Project = props => {
                     <SlideAnimation trigger={triggerAnimation}/>
                 </Text>
                 <Cta>
-                    <SlideAnimation trigger={triggerAnimation}/>
                     <CtaButton>
                         Case study
                     </CtaButton>
-                    {/* <CtaIcon>
-                        <CtaIconBar />
-                        <FontAwesomeIcon icon="chevron-right"/>
-                    </CtaIcon> */}
+                    <SlideAnimation trigger={triggerAnimation}/>
                 </Cta>
             </Content>
         </Container>

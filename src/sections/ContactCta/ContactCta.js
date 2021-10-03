@@ -8,6 +8,7 @@ const Container = styled.div`
     justify-content: center;
     padding-bottom: 6rem;
     background: ${({ theme }) => theme.lightBlue};
+    height: 20vh;
 `
 
 const Content = styled.div`

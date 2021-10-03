@@ -93,8 +93,7 @@ const App = () => {
     }
 
     useEffect(() => {
-        const displayContent = scroll >= windowHeight
-        if(displayContent){
+        if(scroll >= windowHeight){
             let timeout
             clearTimeout(timeout)
             timeout = setTimeout(() => {
@@ -141,7 +140,7 @@ const App = () => {
                 {showContent && (
                     <>
                         <Projects scroll={scroll} />
-                        <Skills />
+                        <Skills scroll={scroll}/>
                         <AboutMe />
                         <ContactCta setShowContact={setShowContact} />
                     </>

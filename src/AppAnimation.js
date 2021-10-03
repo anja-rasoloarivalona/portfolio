@@ -10,7 +10,7 @@ const ApppAnimation = () => {
     const trigger = {
         trigger: '.landing',
         markers: false,
-        scrub: 0.1
+        scrub: 0
     }
 
     return (

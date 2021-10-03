@@ -4,6 +4,7 @@ import landing from '../../assets/landing.jpg'
 import { useSelector } from 'react-redux'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { scrollTo, toggleBodyScroll } from '../../functions'
+import { useWindowSize } from '../../hooks'
 
 const Container = styled.div`
     width: 100vw;
@@ -104,7 +105,7 @@ const Cta = styled.div`
 `
 
 const Landing = () => {
-    
+
     const {  text } = useSelector(state =>state)
 
     const [ show, setShow ] = useState(false)

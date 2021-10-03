@@ -1,7 +1,9 @@
-import React from "react"
+import React, { useState, useEffect } from "react"
 import styled from "styled-components"
 import { useSelector } from 'react-redux'
 import Icon from '../../icons'
+import gsap from 'gsap'
+import { useWindowSize } from '../../hooks'
 
 const Container = styled.div`
     width: 100vw;
@@ -24,7 +26,6 @@ const Content = styled.div`
     position: relative;
     z-index: 2;
     border-radius: .5rem;
-    overflow: hidden;
 `
 
 const Header = styled.div`
@@ -51,19 +52,41 @@ const HeaderBar = styled.div`
 
 const Sections = styled.div`
     display: flex;
-    width: 95%;
-    max-width: 120rem;
+    width: 113rem;
+    height: 80vh;
+    max-height: 56rem;
+    position: relative;
 `
 
 const Section = styled.div`
-    width: 100%;
+    width: 35rem;
+    height: 100%;
     display: flex;
     flex-direction: column;
     padding: 4rem 2rem;
     background: white;
     box-shadow: ${({ theme }) => theme.boxShadow};
-    margin: 0 2rem;
     border-radius: .5rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    opacity: 0;
+    transition: all .3s linear;
+
+    &#front-end {
+        right: 0;
+        margin: auto;
+        z-index: 4;
+    }
+
+    &#back-end {
+        z-index: 3;
+    }
+
+    &#tools {
+        z-index: 2;
+    }
 `
 
 const IconContainer = styled.div`
@@ -78,7 +101,7 @@ const IconContainer = styled.div`
 `
 
 const Title = styled.div`
-    font-size: 2rem;
+    font-size: 2.2rem;
     font-weight: bold;
     margin: 2rem 0;
     text-align: center;
@@ -86,9 +109,10 @@ const Title = styled.div`
 `
 
 const SubTitle = styled.div`
-    font-size: 1.4rem;
+    font-size: 1.6rem;
     margin-bottom: 4rem;
     text-align: center;
+    line-height: 1.6;
 `
 
 const List = styled.ul`
@@ -96,22 +120,37 @@ const List = styled.ul`
 `
 const ListItem = styled.li`
     text-align: center;
-    font-size: 1.4rem;
+    font-size: 1.6rem;
     margin-bottom: 1rem;
 `
 
-const Skills = () => {
+const Skills = props => {
+
+    const { scroll } = props
 
     const {
         text
     } = useSelector(state => state)
 
+    const [ played, setPlayed ] = useState(false)
+    const el = document.getElementById("skills")
+    const { windowHeight } = useWindowSize()
+
+    useEffect(() => {   
+        if(el && !played){
+            const elDom = el.getBoundingClientRect()
+            if(elDom.top <= windowHeight * .7){
+                playAnimation()
+                setPlayed(true)
+            }
+        } 
+    },[scroll])
 
     const sections = [
         {
             id: "front-end",
             title: text.front_end,
-            subTitle: "Le lorem ipsum est, en imprimerie, une suite de mots sans signification utilisée à titre provisoire pour calibrer une mise en page, le texte définitif venant remplacer le faux-texte dès qu'il",
+            subTitle: text.skills_front_end_subtitle,
             list: [
                 "ES6 - Javascript", "React - Redux", "React Native", "Vue.js", "Elastic Search", "jQuery", "CSS / Sass"
             ]
@@ -119,7 +158,7 @@ const Skills = () => {
         {
             id: "back-end",
             title: text.back_end,
-            subTitle: "Le lorem ipsum est, en imprimerie, une suite de mots sans signification utilisée à titre provisoire pour calibrer une mise en page, le texte définitif venant remplacer le faux-texte dès qu'il",
+            subTitle: text.skills_back_end_subtitle,
             list: [
                 "Node.js", "Express", "SQL", "MongoDB", "graphQL", "SendGrid", "Socket"
             ]
@@ -127,12 +166,26 @@ const Skills = () => {
         {
             id: "tools",
             title: text.tools,
-            subTitle: "Le lorem ipsum est, en imprimerie, une suite de mots sans signification utilisée à titre provisoire pour calibrer une mise en page, le texte définitif venant remplacer le faux-texte dès qu'il",
+            subTitle: text.skills_tools_subtitle,
             list: [
-                "Git", "GitLab", "BitBucket", "Visual Studio Code"
+                "Heroku", "Git", "GitLab", "BitBucket", "Visual Studio Code", "HeidiSQL"
             ]
         }
     ]
+
+    const playAnimation = () => {
+        const d = .3
+        let front = gsap.timeline()
+        let back  = gsap.timeline()
+        let tools = gsap.timeline()
+        front.from('#front-end', {scale: 4, y: 1000 })
+        front.to('#front-end', {scale: "1", opacity: 1, y: 0, duration: d})
+        front.to('#front-end', {x: -390, duration: d / 2 }, `+=${d/2}`)
+        back.to('#back-end', {opacity: 1, duration: 0 }, `+=${d * 5}`)
+        tools.to('#tools', {opacity: 1,  duration: 0 }, `+=${d * 5}`)
+        back.to('#back-end', { x: 390, duration: d })
+        tools.to('#tools', { x: 780, duration: d })
+    }
 
     return (
         <Container id="skills">
@@ -144,7 +197,7 @@ const Skills = () => {
                 </Header>
                 <Sections>
                     {sections.map(section => (
-                        <Section key={section.id}>
+                        <Section key={section.id} id={section.id}>
                             <IconContainer>
                                 <Icon icon={section.id}/>
                             </IconContainer>

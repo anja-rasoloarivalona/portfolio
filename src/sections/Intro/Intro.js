@@ -26,6 +26,7 @@ const Content = styled.div`
     
     * {
         position: relative;
+        z-index: 2;
     }
 `
 
@@ -53,8 +54,6 @@ const Cta = styled.div`
     position: relative;
     display: flex;
     align-items: center;
-    z-index: 3;
-    cursor: pointer;
     svg {
         color: ${props => props.theme.lightGrey};
     }
@@ -68,7 +67,6 @@ const CtaButton = styled.div`
     font-size: 1.6rem;
     border-radius: .5rem;
     cursor: pointer;
-    z-index: 3;
     :hover {
         background: ${props => props.theme.greenTransparent};
     }

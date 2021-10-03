@@ -74,6 +74,7 @@ const Projects = props => {
                     <Project 
                         key={index}
                         index={index}
+                        isLast={index === projects.length - 1}
                         image={project.image}
                         title={project.title}
                         subtitle={project.subtitle}

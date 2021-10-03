@@ -7,12 +7,13 @@ import * as actions from '../../store/actions'
 
 const Container = styled.div`
     width: 100vw;
+    height: 80vh;
     display: flex;
-    align-items: center;
     justify-content: center;
-    padding: 4rem 0;
+    padding-bottom: 4rem;
+    padding-top: 10rem;
     background: ${({ theme }) => theme.lightBlue};
-    scroll-margin: 3rem;
+    scroll-margin: 0rem;
 `
 const Content = styled.div`
     width: 95%;

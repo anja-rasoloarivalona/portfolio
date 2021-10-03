@@ -7,7 +7,7 @@ const Container = styled.div`
     right: 0;
     width: 100%;
     height: 100%;
-    z-index: 2;
+    z-index: 2 !important;
     overflow: hidden;
     ${({ t1, t2 }) => {
         let pos = 0
@@ -16,6 +16,13 @@ const Container = styled.div`
         return {
             "> *": {
                 transform: `translateX(${pos}%)`
+            }
+        }
+    }}
+    ${({ t2 }) => {
+        if(t2){
+            return {
+                zIndex: 1 + " !important"
             }
         }
     }}
@@ -48,13 +55,13 @@ const SlideAnimation = props => {
     const [ t2, setT2 ] = useState(false)
 
       useEffect(() => {
-        if(trigger){
+        if(trigger && !t1){
             setT1(true)
         }
     },[trigger])
 
     useEffect(() => {
-        if(t1){
+        if(t1 && !t2){
             const delay = quick ? 550 : 750
             setTimeout(() => {
                 setT2(true)

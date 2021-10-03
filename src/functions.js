@@ -1,11 +1,11 @@
 import { scroller } from "react-scroll";
 import { isFirefox } from 'react-device-detect'
 
-const scrollTo = (id, duration = 1000, delay = 0) => {
+const scrollTo = (id, duration = 1000, delay = 0, smooth="linear") => {
     scroller.scrollTo(id, {
         duration,
         delay,
-        smooth: "linear"
+        smooth
     })
 }
 

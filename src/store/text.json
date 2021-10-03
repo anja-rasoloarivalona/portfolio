@@ -123,6 +123,18 @@
         "fr": "Envoyer",
         "en": "Send"
     },
+    "skills_front_end_subtitle": {
+        "fr": "J'adore le développement Front-end. J'éprouve une grande satisfaction lorsque je vois un produit prendre vie sur mon écran.",
+        "en": "I love Front-end development. I get a lot of satisfaction when I see a product coming to life on my screen."
+    },
+    "skills_back_end_subtitle": {
+        "fr": "Je suis aussi en mesure de créer et d'entretenir des APIs conformes aux standards.",
+        "en": "I am also able to create and maintain APIs that meet the standards."
+    },
+    "skills_tools_subtitle": {
+        "fr": "Voici une liste d'outils que j'utilise à titre professionnel et personnel.",
+        "en": "Here is a list of tools that I use professionally and personally."
+    },
     "today": {
         "fr": "Aujourd'hui",
         "en": "Today"
