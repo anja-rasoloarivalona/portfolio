@@ -1,7 +1,8 @@
-import React, { useState } from "react"
+import React from "react"
 import styled from "styled-components"
 import { FontAwesomeIcon  } from '@fortawesome/react-fontawesome'
-import { useSelector, useDispatch } from 'react-redux'
+import { useSelector } from 'react-redux'
+import SlideAnimation from '../../components/SlideAnimation'
 
 const Container = styled.div`
     width: 100vw;
@@ -22,6 +23,10 @@ const Content = styled.div`
     align-items: flex-start;
     width: 95%;
     max-width: 90rem;
+    
+    * {
+        position: relative;
+    }
 `
 
 const IntroText = styled.div`
@@ -46,7 +51,10 @@ const SubTitle = styled.div`
 const Cta = styled.div`
     margin-top: 3rem;
     position: relative;
-
+    display: flex;
+    align-items: center;
+    z-index: 3;
+    cursor: pointer;
     svg {
         color: ${props => props.theme.lightGrey};
     }
@@ -60,21 +68,15 @@ const CtaButton = styled.div`
     font-size: 1.6rem;
     border-radius: .5rem;
     cursor: pointer;
-    
+    z-index: 3;
     :hover {
         background: ${props => props.theme.greenTransparent};
     }
 `
 const CtaIcon = styled.div`
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 90%;
-    margin: auto;
-    z-index: 2;
     display: flex;
     align-items: center;
-
+    transform: translateX(-1rem);
     svg {
         font-size: 1.4rem;
     }
@@ -88,27 +90,34 @@ const CtaIconBar = styled.div`
 
 const Home = props => {
 
-    const dispatch = useDispatch()
+    const { showContent, setShowContact } = props
+
     const { text } = useSelector(s => s)
 
     return (
         <Container>
             <Content>
-                <IntroText>{text.intro_hi}</IntroText>
+                <IntroText>
+                    {text.intro_hi}
+                    <SlideAnimation trigger={showContent}/>
+                </IntroText>
                 <Title>
                     Anja Rasoloarivalona.
+                    <SlideAnimation trigger={showContent}/>
                 </Title>
                 <SubTitle>
                     {text.intro_i_am}
+                    <SlideAnimation trigger={showContent}/>
                 </SubTitle>
                 <Cta>
-                    <CtaButton>
+                    <CtaButton onClick={() => setShowContact(true)}>
                         {text.contact}
                     </CtaButton>
-                    <CtaIcon>
+                    <CtaIcon showContent={showContent}>
                         <CtaIconBar />
                         <FontAwesomeIcon icon="chevron-right"/>
                     </CtaIcon>
+                    <SlideAnimation trigger={showContent}/>
                 </Cta>
             </Content>
         </Container>

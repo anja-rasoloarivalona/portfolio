@@ -65,7 +65,7 @@ const Trigger = styled.div`
 `
 
 
-const Appp = () => {
+const App = () => {
 
     const dispatch = useDispatch()
     const { windowHeight } = useWindowSize()
@@ -76,6 +76,7 @@ const Appp = () => {
     const [ showContent, setShowContent ] = useState(false)
     
     useEffect(() => {
+        window.scrollTo(0, 0)
         document.addEventListener("scroll", listen)
         return () => {
             document.removeEventListener("scroll", listen);
@@ -125,7 +126,10 @@ const Appp = () => {
                                 <Landing />
                             </LandingContainer>
                             <ContentContainer inFront={scroll >= windowHeight / 2}>
-                                <Intro />
+                                <Intro
+                                    showContent={showContent} 
+                                    setShowContact={setShowContact}
+                                />
                             </ContentContainer>
                         </>
                     )}
@@ -147,4 +151,4 @@ const Appp = () => {
     )
 };
 
-export default Appp;
+export default App;

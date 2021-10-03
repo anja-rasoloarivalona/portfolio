@@ -3,6 +3,7 @@ import styled from "styled-components"
 import { useSelector, useDispatch} from 'react-redux'
 import * as actions from '../store/actions'
 import ContactMe from '../sections/ContactMe/ContactMe'
+import { toggleBodyScroll } from '../functions'
 
 const Container = styled.div`
     ${({ show }) => {
@@ -74,10 +75,10 @@ const Menu = styled.div`
     top: -100vh;
     left: 0;
     z-index: 2;
-    background: ${({ theme }) => theme.darkBlue};
+    background: ${({ theme, useLightBg }) => useLightBg ? theme.lightBlue : theme.darkBlue};
     width: 100vw;
     height: 100vh;
-    transition: all .5s linear;
+    transition: top .5s linear, background .3s linear;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -116,8 +117,10 @@ const Navbar = props => {
     const { showContent, showContact, setShowContact } = props
     const dispatch = useDispatch()
 
-    const [ show, setShow ] = useState(false)
     const { text, locale } = useSelector(state => state)
+
+    const [ show, setShow ] = useState(false)
+    const [ useLightBg, setUseLightBg ] = useState(false)
 
 
     useEffect(() => {
@@ -125,11 +128,22 @@ const Navbar = props => {
             setShow(true)
         }
     },[showContact])
+
+    useEffect(() => {
+        if(show){
+            let timeout;
+            clearTimeout(timeout)
+            timeout = setTimeout(() => {
+                setUseLightBg(true)
+            },200)
+        } else {
+            setUseLightBg(false)
+            setShowContact(false)
+        }
+    },[show])
     
     const scrollTo = (id) => {
-        setTimeout(() => {
-            document.getElementById(id).scrollIntoView({behavior: "smooth"})
-        }, 500)
+        document.getElementById(id).scrollIntoView({behavior: "instant"})
     }
 
     const onClickHandler = (item) => {
@@ -161,7 +175,7 @@ const Navbar = props => {
                 </Toggle>
             </ToggleContainer>
             
-            <Menu className="menu">
+            <Menu className="menu" useLightBg={useLightBg}>
                 {showContact ?
                     <ContactMe /> :
                     <MenuList>

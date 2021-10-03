@@ -51,7 +51,9 @@ const Cta = styled.div`
     }
 `
 
-const ContactCta = () => {
+const ContactCta = props => {
+
+    const { setShowContact } = props
 
     const { text } = useSelector(state => state)
 
@@ -60,7 +62,7 @@ const ContactCta = () => {
             <Content>
                 <Title>{text.contact_cta_title}</Title>
                 <Text>{text.contact_cta_text}</Text>
-                <Cta>{text.contact_cta_button}</Cta>
+                <Cta onClick={() => setShowContact(true)}>{text.contact_cta_button}</Cta>
             </Content>
         </Container>
     )

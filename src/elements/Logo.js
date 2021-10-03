@@ -13,13 +13,19 @@ const Name = styled.div`
     font-weight: 700;
     font-size: 2.5rem;
     color: ${({ theme }) => theme.green};
+    cursor: pointer;
 `
 
 const Logo = props => {
     const { showContent } = props
+
+    const reloadHandler = () => {
+        window.location.reload();
+    }
+
     return (
         <Container show={showContent}>
-            <Name>
+            <Name onClick={reloadHandler}>
                 Anja.
             </Name>
         </Container>
