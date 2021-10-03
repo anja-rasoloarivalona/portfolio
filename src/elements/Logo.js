@@ -1,11 +1,12 @@
-import React from "react"
+import React  from "react"
 import styled from "styled-components"
 
 const Container = styled.div`
     position: fixed;
-    top: 2.5rem;
+    top: ${({ show }) => show ? 2.5 : -4}rem;
     left: 4rem;
     z-index: 3;
+    transition: all .3s ease-in;
 `
 
 const Name = styled.div`
@@ -14,9 +15,10 @@ const Name = styled.div`
     color: ${({ theme }) => theme.green};
 `
 
-const Logo = () => {
+const Logo = props => {
+    const { showContent } = props
     return (
-        <Container>
+        <Container show={showContent}>
             <Name>
                 Anja.
             </Name>

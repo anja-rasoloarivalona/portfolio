@@ -70,7 +70,10 @@ const Appp = () => {
     const dispatch = useDispatch()
     const { windowHeight } = useWindowSize()
     const { text, locale } = useSelector(state => state)
+
     const [ scroll, setScroll ] = useState(0)
+    const [ showContact, setShowContact ] = useState(false)
+    const [ showContent, setShowContent ] = useState(false)
     
     useEffect(() => {
         document.addEventListener("scroll", listen)
@@ -88,18 +91,32 @@ const Appp = () => {
         setScroll(scrollY)
     }
 
+    useEffect(() => {
+        const displayContent = scroll >= windowHeight
+        if(displayContent){
+            let timeout
+            clearTimeout(timeout)
+            timeout = setTimeout(() => {
+                setShowContent(true)
+            },200)
+        } else {
+            setShowContent(false)
+        }
+    },[scroll, windowHeight])
+
     if(!text){
         return null
     }
 
-
-    const displayContent = scroll >= windowHeight
-
     return (
         <ThemeProvider  theme={theme}>
-            <SideBars scroll={scroll} />
-            <Logo />
-            <Navbar />
+            <SideBars showContent={showContent} />
+            <Logo  showContent={showContent}/>
+            <Navbar
+                showContact={showContact} 
+                setShowContact={setShowContact}
+                showContent={showContent}
+            />
             <Container>
                 <Timeline
                     target={(
@@ -117,13 +134,12 @@ const Appp = () => {
                     <Trigger className="trigger-start" />
                     <Trigger className="trigger-end" />
                 </Timeline>
-                {displayContent && (
+                {showContent && (
                     <>
                         <Projects scroll={scroll} />
                         <Skills />
                         <AboutMe />
-                        <ContactCta />
-                        {/* <ContactMe /> */}
+                        <ContactCta setShowContact={setShowContact} />
                     </>
                 )}
             </Container>

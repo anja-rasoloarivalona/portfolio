@@ -1,4 +1,8 @@
 {
+    "2d_game": {
+        "fr": "Jeu en 2D",
+        "en": "2D game"
+    },
     "about_me": {
         "fr": "À mon sujet",
         "en": "About me"
@@ -6,6 +10,10 @@
     "back_end": {
         "fr": "Back-end",
         "en": "Back-end"
+    },
+    "budget": {
+        "fr": "Budget",
+        "en": "Budget"
     },
     "contact": {
         "fr": "Contact",
@@ -22,6 +30,22 @@
     "contact_cta_button": {
         "fr": "Allons-y",
         "en": "Let's do this"
+    },
+    "contact_me_title": {
+        "fr": "Je suis impatitent de découvrir votre projet. Prêt à commencer ?",
+        "en": "I'excited to learn about your project. Ready to get started?"
+    },
+    "custom": {
+        "fr": "Customisé",
+        "en": "Custom"
+    },
+    "desktop_app": {
+        "fr": "Application de bureau",
+        "en": "Desktop app"
+    },
+    "ecommerce": {
+        "fr": "E-commerce",
+        "en": "E-commerce"
     },
     "download_cv": {
         "fr": "Télécharger CV",
@@ -71,6 +95,10 @@
         "fr": "Mes compétences",
         "en": "My skills"
     },
+    "mobile_app": {
+        "fr": "Application mobile",
+        "en": "Mobile app"
+    },
     "name": {
         "fr": "Nom",
         "en": "Name"
@@ -87,6 +115,10 @@
         "fr": "Mes travaux",
         "en": "My works"
     },
+    "project_type": {
+        "fr": "Type de project",
+        "en": "Project type"
+    },
     "send": {
         "fr": "Envoyer",
         "en": "Send"
@@ -98,5 +130,9 @@
     "tools": {
         "fr": "Outils",
         "en": "Tools"
+    },
+    "website": {
+        "fr": "Site web",
+        "en": "Website"
     }
 }

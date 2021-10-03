@@ -1,7 +1,8 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import styled from "styled-components"
 import { useSelector, useDispatch} from 'react-redux'
 import * as actions from '../store/actions'
+import ContactMe from '../sections/ContactMe/ContactMe'
 
 const Container = styled.div`
     ${({ show }) => {
@@ -26,9 +27,10 @@ const Container = styled.div`
 
 const ToggleContainer = styled.div`
     position: fixed;
-    top: 2.5rem;
+    top: ${({ showContent }) => showContent ? 2 : -4}rem;
     right: 4rem;
     z-index: 3;
+    transition: all .3s ease-in;
 `
 
 const Toggle = styled.div`
@@ -109,18 +111,21 @@ const MenuListItem = styled.li`
 `
 
 
-const Navbar = () => {
+const Navbar = props => {
 
+    const { showContent, showContact, setShowContact } = props
     const dispatch = useDispatch()
 
     const [ show, setShow ] = useState(false)
-
     const { text, locale } = useSelector(state => state)
 
-    const nextLocale = locale === "en" ? "fr" : "en"
 
-
-  
+    useEffect(() => {
+        if(showContact && !show){
+            setShow(true)
+        }
+    },[showContact])
+    
     const scrollTo = (id) => {
         setTimeout(() => {
             document.getElementById(id).scrollIntoView({behavior: "smooth"})
@@ -136,17 +141,18 @@ const Navbar = () => {
         }
     }
 
+    const nextLocale = locale === "en" ? "fr" : "en"
     const sections = [
         { label: text.projects_title, id: "projects" },
         { label: text.my_skills, id: "skills" },
         { label: text.about_me, id: "about-me" },
-        { label: text.contact },
+        { label: text.contact, action: () => setShowContact(true)},
         { label: text[`${nextLocale}_locale`], action: () => dispatch(actions.setText(nextLocale))}
     ]
 
     return (
-        <Container  show={show}>
-            <ToggleContainer onClick={() => setShow(prev => !prev)}>
+        <Container show={show}>
+            <ToggleContainer onClick={() => setShow(prev => !prev)} showContent={showContent}>
                 <Toggle>
                     <ToggleBar className="top" />
                     <ToggleBar className="mid left" />
@@ -154,16 +160,19 @@ const Navbar = () => {
                     <ToggleBar className="bottom" />
                 </Toggle>
             </ToggleContainer>
-
+            
             <Menu className="menu">
-                <MenuList>
-                    {sections.map((section, index) => (
-                        <MenuListItem key={index} onClick={() => onClickHandler(section)}>
-                            {section.label}
-                        </MenuListItem>
-                    ))}
-                </MenuList>
-            </Menu>
+                {showContact ?
+                    <ContactMe /> :
+                    <MenuList>
+                        {sections.map((section, index) => (
+                            <MenuListItem key={index} onClick={() => onClickHandler(section)}>
+                                {section.label}
+                            </MenuListItem>
+                        ))}
+                    </MenuList>   
+                }
+                </Menu>
         </Container>
      )
 };
