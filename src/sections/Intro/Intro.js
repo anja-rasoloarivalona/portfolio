@@ -47,6 +47,7 @@ const SubTitle = styled.div`
     font-size: 4rem;
     font-weight: 600;
     color: ${props => props.theme.lightGrey};
+    padding-left: 4px;
 `
 
 const Cta = styled.div`

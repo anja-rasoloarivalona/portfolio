@@ -31,8 +31,8 @@ const Title = styled.div`
 `
 
 const Text = styled.span`
-    font-size: 1.4rem;
-    max-width: 30rem;
+    font-size: 1.6rem;
+    max-width: 32rem;
     text-align: center;
     color: ${props => props.theme.brightGrey};
     line-height: 1.4;
