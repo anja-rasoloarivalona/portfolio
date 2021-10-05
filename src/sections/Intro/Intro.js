@@ -15,6 +15,11 @@ const Container = styled.div`
     z-index: 2;
     padding-top: 15%;
     overflow: hidden;
+
+    @media screen and (max-width: 1200px){
+        padding-top: unset;
+        justify-content: center;
+    }
 `
 
 const Content = styled.div`

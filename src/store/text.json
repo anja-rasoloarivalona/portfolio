@@ -123,13 +123,29 @@
         "fr": "Nom",
         "en": "Name"
     },
+    "open_website": {
+        "fr": "Consulter",
+        "en": "Open website"
+    },
     "personnal_project": {
         "fr": "Projet personnel",
-        "en": "Personnal project"
+        "en": "Personal project"
     },
     "projects": {
         "fr": "Projets",
         "en": "Projects"
+    },
+    "project_text_bizbizshare": {
+        "fr": "BizBizShare est une startup québécoise qui possède plusieurs marketplaces en B2B et offre aussi des marketplaces en marque blanche à divers clients. J'étais chargé de reconstruire l'ensemble de l'interface des marketplaces avec React et Redux.",
+        "en": "BizBizShare is a Quebec-based startup that owns several B2B marketplaces and offer white label marketplaces as well for various clients.  I was in charge of rebuilding the whole interface of the marketplaces with React and Redux."
+    },
+    "project_text_woto": {
+        "fr": "Woto fut mon premier réel projet. Il s'agit d'un concessionnaire automobile créé par l'un de mes amis. Afin de l'aider, j'ai donc élaboré cette interface mais malheureusement en raison du Covid, le lancement a été retardé.",
+        "en": "Woto was my first real project. It is a car dealership founded by one of my friends. In order to help him, I developed this interface but unfortunately because of Covid, the launch was delayed."
+    },
+    "project_text_monetor": {
+        "fr": "Monetor est mon projet personnel auquel j'y tiens beaucoup. Il s'agit d'une application permettant de gérer efficacement son planning afin d'atteindre les objectifs. Le lancement officiel est prévu pour le mois prochain.",
+        "en": "Monetor is my personal project that I am very fond of. It is an application that allows you to manage your schedule efficiently in order to reach your goals. The official launch is planned for next month."
     },
     "projects_title": {
         "fr": "Mes travaux",

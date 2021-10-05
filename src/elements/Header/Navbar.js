@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react"
 import styled from "styled-components"
 import { useSelector, useDispatch} from 'react-redux'
-import * as actions from '../store/actions'
-import ContactMe from '../sections/ContactMe/ContactMe'
-import { toggleBodyScroll } from '../functions'
+import * as actions from '../../store/actions'
+import ContactMe from '../../sections/ContactMe/ContactMe'
+import { toggleBodyScroll } from '../../functions'
 
 const Container = styled.div`
     ${({ show }) => {
@@ -27,10 +27,6 @@ const Container = styled.div`
 `
 
 const ToggleContainer = styled.div`
-    position: fixed;
-    top: ${({ showContent }) => showContent ? 2 : -4}rem;
-    right: 4rem;
-    z-index: 3;
     transition: all .3s ease-in;
 `
 

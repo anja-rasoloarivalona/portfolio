@@ -4,6 +4,9 @@ import { useSelector } from 'react-redux'
 import Icon from '../../icons'
 import gsap from 'gsap'
 import { useWindowSize } from '../../hooks'
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 const Container = styled.div`
     width: 100vw;
@@ -26,6 +29,9 @@ const Content = styled.div`
     position: relative;
     z-index: 2;
     border-radius: .5rem;
+    @media screen and (max-width: 1200px){
+        height: max-content;
+    }
 `
 
 const Header = styled.div`
@@ -87,6 +93,12 @@ const Section = styled.div`
     &#tools {
         z-index: 2;
     }
+
+    @media screen and (max-width: 1200px){
+        position: relative;
+        margin: unset;
+        opacity: 1;
+    }
 `
 
 const IconContainer = styled.div`
@@ -124,20 +136,81 @@ const ListItem = styled.li`
     margin-bottom: 1rem;
 `
 
+const SliderContainer = styled.div`
+    position: relative;
+    width: 100%;
+    height: 100%;
+    max-height: 700px;
+    
+    .slick-track {
+        display: flex !important;
+        > div {
+            height: 100%;
+            > div {
+                height: 100%;
+            }
+        }
+    }
+
+    .slick-list {
+        width: 100vw;
+        @media screen and (max-width: 430px) {
+            width: 100vw;
+        }
+    }
+
+    .slick-slide {
+        height: inherit !important;
+        display: flex;
+        justify-content: center;
+
+        @media screen and (max-width: 404px) {
+            margin: 0 10px;
+        }
+
+    }
+
+    .slick-slide {
+        margin: 0 2.5rem;
+      }
+      .slick-list {
+        margin: 0 -2.5rem;
+      }
+
+    .slick-slide > div{
+        width: 100%;
+        max-width: 40rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    
+    .slick-dots {
+        bottom: -50px !important;
+    }
+
+    .slick-dots li button:before {
+        color: ${({ theme }) =>  theme.brightGrey};
+    }
+
+`
+
 const Skills = props => {
 
     const { scroll } = props
-
     const {
         text
     } = useSelector(state => state)
 
-    const [ played, setPlayed ] = useState(false)
-    const el = document.getElementById("skills")
-    const { windowHeight } = useWindowSize()
+    const { windowHeight, windowWidth } = useWindowSize()
+    const useMobile = windowWidth <= 1200 
 
+    const [ played, setPlayed ] = useState(false)
+
+    const el = document.getElementById("skills")
     useEffect(() => {   
-        if(el && !played){
+        if(!useMobile && el && !played){
             const elDom = el.getBoundingClientRect()
             if(elDom.top <= windowHeight * .7){
                 playAnimation()
@@ -187,6 +260,34 @@ const Skills = props => {
         tools.to('#tools', { x: 780, duration: d })
     }
 
+    const mobileSliderSettings = {
+        dots: true,
+        infinite: false,
+        speed: 50,
+        slidesToShow: Math.min(windowWidth / 400, 3),
+        slidesToScroll: 1,
+        arrows: false,
+    }
+
+    const renderSections = () => {
+        return sections.map(section => (
+            <Section key={section.id} id={section.id}>
+                <IconContainer>
+                    <Icon icon={section.id}/>
+                </IconContainer>
+                <Title>{section.title}</Title>
+                <SubTitle>{section.subTitle}</SubTitle>
+                <List>
+                    {section.list.map((listItem, index) => (
+                        <ListItem key={index}>
+                            {listItem}
+                        </ListItem>
+                    ))}
+                </List>
+            </Section>
+        ))
+    }
+
     return (
         <Container id="skills">
             <Content>
@@ -195,24 +296,16 @@ const Skills = props => {
                     <HeaderTitle>{text.my_skills}</HeaderTitle>
                     <HeaderBar  />
                 </Header>
-                <Sections>
-                    {sections.map(section => (
-                        <Section key={section.id} id={section.id}>
-                            <IconContainer>
-                                <Icon icon={section.id}/>
-                            </IconContainer>
-                            <Title>{section.title}</Title>
-                            <SubTitle>{section.subTitle}</SubTitle>
-                            <List>
-                                {section.list.map((listItem, index) => (
-                                    <ListItem key={index}>
-                                        {listItem}
-                                    </ListItem>
-                                ))}
-                            </List>
-                        </Section>
-                    ))}
-                </Sections>
+                {useMobile ?
+                    <SliderContainer>
+                        <Slider {...mobileSliderSettings}>
+                            {renderSections()}
+                        </Slider>
+                    </SliderContainer> :
+                    <Sections>
+                        {renderSections()}
+                    </Sections>
+                }
             </Content>
         </Container>
      )

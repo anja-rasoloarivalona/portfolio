@@ -72,16 +72,24 @@ const Content = styled.div`
     * {
         line-height: 1.4;
     }
+
+    & > .content__text:not(:last-chid){
+        margin-bottom: 1rem;
+    }
 `
 
-const MainText = styled.div`
+const Text = styled.div`
     font-size: 4rem;
-    margin-bottom: 1rem;
+    @media screen and (max-width: 685px){
+        font-size: 3.5rem;
+        padding: 0 1.5rem;
+        text-align: center;
+    }
+    @media screen and (max-width: 410px){
+        font-size: 2.5rem;
+    }
 `
 
-const SubText = styled.div`
-    font-size: 4rem;
-`
 
 const Cta = styled.div`
     width: 3.5rem;
@@ -129,8 +137,8 @@ const Landing = () => {
             <Layer className="layer"/>
             <Image src={landing}/>
             <Content className="content">
-                <MainText>{text.landing_text_a}</MainText>
-                <SubText>{text.landing_text_b}</SubText>
+                <Text className="content__text">{text.landing_text_a}</Text>
+                <Text className="content__text">{text.landing_text_b}</Text>
                 <Cta onClick={scrollHandler} className="cta">
                     <FontAwesomeIcon icon="chevron-down"/>
                 </Cta>

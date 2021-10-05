@@ -4,6 +4,7 @@ import Project from './Project'
 import { useSelector } from 'react-redux'
 import bizbizshare from '../../assets/bizbizshare.PNG'
 import woto from '../../assets/woto.PNG'
+import monetor from '../../assets/monetor.PNG'
 
 const Container = styled.div`
     width: 100vw;
@@ -39,6 +40,7 @@ const HeaderBar = styled.div`
     background: ${props => props.theme.brightBlue};
 `
 
+
 const Projects = props => {
 
     const { scroll } = props
@@ -52,13 +54,21 @@ const Projects = props => {
             image: bizbizshare,
             title: "BizbizShare",
             subtitle: text.front_end_developper,
-            text: "Le lorem ipsum est, en imprimerie, une suite de mots sans signification utilisée à titre provisoire pour calibrer une mise en page, le texte définitif venant remplacer le faux-texte dès qu'il est prêt ou que la mise en page est achevée."
+            text: text.project_text_bizbizshare,
+            link: "https://bizbizshare.com"
         },
         {
             image: woto,
             title: "Woto motors",
             subtitle: text.personnal_project,
-            text: "Le lorem ipsum est, en imprimerie, une suite de mots sans signification utilisée à titre provisoire pour calibrer une mise en page, le texte définitif venant remplacer le faux-texte dès qu'il est prêt ou que la mise en page est achevée."
+            text: text.project_text_woto,
+            link: "https://anja-rasoloarivalona.github.io/woto-motors/#/?currency=CAD&lang=english"
+        },
+        {
+            image: monetor,
+            title: "Monetor",
+            subtitle: text.personnal_project,
+            text: text.project_text_monetor
         }
     ]
 
@@ -69,20 +79,15 @@ const Projects = props => {
                     <HeaderTitle>{text.projects_title}</HeaderTitle>
                     <HeaderBar  />
                 </Header>
-
-                {projects.map((project, index) => (
-                    <Project 
-                        key={index}
-                        index={index}
-                        isLast={index === projects.length - 1}
-                        image={project.image}
-                        title={project.title}
-                        subtitle={project.subtitle}
-                        text={project.text}
-                        scroll={scroll}
-                    />
-                ))}
-                
+                    {projects.map((project, index) => (
+                        <Project 
+                            key={index}
+                            index={index}
+                            isLast={index === projects.length - 1}
+                            project={project}
+                            scroll={scroll}
+                        />
+                    ))}
             </Content>
          </Container>
      )

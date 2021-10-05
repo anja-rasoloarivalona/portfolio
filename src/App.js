@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useRef } from "react"
+import React, {useState, useEffect } from "react"
 import { useSelector, useDispatch } from 'react-redux'
 import styled, { ThemeProvider } from "styled-components";
 import Landing from "./sections/Landing/Landing";
@@ -15,11 +15,9 @@ import Intro from './sections/Intro/Intro'
 import Projects from './sections/Projects/Projects'
 import Skills from './sections/Skills/Skills'
 import ContactCta from './sections/ContactCta/ContactCta'
-import ContactMe from './sections/ContactMe/ContactMe'
 import AboutMe from './sections/AboutMe/AboutMe'
 import SideBars from './elements/Sidebars/SideBars'
-import Logo from './elements/Logo'
-import Navbar from './elements/Navbar'
+import Header from './elements/Header/Header'
 
 gsap.registerPlugin(ScrollTrigger);
 library.add(fas);
@@ -68,7 +66,7 @@ const Trigger = styled.div`
 const App = () => {
 
     const dispatch = useDispatch()
-    const { windowHeight } = useWindowSize()
+    const { windowHeight, windowWidth } = useWindowSize()
     const { text, locale } = useSelector(state => state)
 
     const [ scroll, setScroll ] = useState(0)
@@ -110,9 +108,10 @@ const App = () => {
 
     return (
         <ThemeProvider  theme={theme}>
-            <SideBars showContent={showContent} />
-            <Logo  showContent={showContent}/>
-            <Navbar
+            {windowWidth > 1200 && (
+                <SideBars showContent={showContent} />
+            )}
+            <Header
                 showContact={showContact} 
                 setShowContact={setShowContact}
                 showContent={showContent}

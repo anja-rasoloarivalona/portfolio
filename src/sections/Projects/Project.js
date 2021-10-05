@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react"
 import styled from "styled-components"
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import SlideAnimation from '../../components/SlideAnimation'
 import { useWindowSize } from '../../hooks'
+import { useSelector } from 'react-redux'
 
 const Container = styled.div`
     position: relative;
@@ -37,23 +37,42 @@ const Container = styled.div`
     }
 `
 
-const ImageContainer = styled.div`
+const ImageContainer = styled.a`
     position: absolute;
     width: 63%;
     height: 100%;
     left: 0;
     top: 0;
-`
-
-const Image = styled.img`
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    border-radius: .5rem;
     opacity: 0;
     transform: scale(.8);
     transition: all .5s linear;
     transition-delay: .5s;
+    
+    // &:before {
+    //     content: "";
+    //     position: absolute;
+    //     top: 0;
+    //     left: 0;
+    //     width: 100%;
+    //     height: 100%;
+    //     z-index: 4;
+    //     background: ${({ theme }) => theme.darkBlue};
+    //     mix-blend-mode: color;
+    // }
+
+    // :hover {
+    //     &:before {
+    //         mix-blend-mode: lighten;
+    //     }
+    // }
+
+    ${({ link }) => {
+        if(link){
+            return {
+                cursor: "pointer"
+            }
+        }
+    }}
 
     ${({ trigger }) => {
         if(trigger){
@@ -63,6 +82,13 @@ const Image = styled.img`
             }
         }
     }}
+`
+
+const Image = styled.img`
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: .5rem;   
 `
 
 const Content = styled.div`
@@ -93,12 +119,13 @@ const SubTitle = styled.div`
 const Text = styled.div`
     margin: 2rem 0;
     background: ${props => props.theme.lightBlue};
-    font-size: 1.4rem;
+    font-size: 1.6rem;
     padding: 2rem;
     line-height: 1.6;
     color: ${props => props.theme.brightGrey};
     border-radius: .8rem;
     transition-delay: 1s;
+    font-family: Lato;
 
     &.show {
         transition: all .3s ease-in;
@@ -108,7 +135,7 @@ const Text = styled.div`
     }
 `
 
-const Cta = styled.div`
+const Cta = styled.a`
     margin-top: 1rem;
 `
 
@@ -135,8 +162,11 @@ const Trigger = styled.div`
 `
 
 const Project = props => {
-    const {image, subtitle, title, text, index, scroll , isLast} = props
+
+    const  { project: {image, subtitle, title, text: projectText, link },  index, scroll , isLast } = props
     const { windowHeight } = useWindowSize()
+
+    const { text } = useSelector(state => state)
 
     const [triggerAnimation, setTriggerAnimation ] = useState(false)
     const leftText = index % 2 !== 0
@@ -153,8 +183,15 @@ const Project = props => {
     return (
         <Container leftText={leftText} isLast={isLast}>
             <Trigger windowHeight={windowHeight} id={id}/>
-            <ImageContainer className="image-container">
-                <Image src={image} trigger={triggerAnimation} />
+            <ImageContainer
+                className="image-container"
+                trigger={triggerAnimation}
+                href={link}
+                target="_blank"
+                rel="noopener noreferrer"
+                link={link}
+            >
+                <Image src={image} />
             </ImageContainer>
             <Content className="content">
                 <SubTitle>
@@ -166,15 +203,17 @@ const Project = props => {
                     <SlideAnimation trigger={triggerAnimation}/>
                 </Title>
                 <Text className={triggerAnimation ? "show" : ""}>
-                    {text}
+                    {projectText}
                     <SlideAnimation trigger={triggerAnimation}/>
                 </Text>
-                <Cta>
-                    <CtaButton>
-                        Case study
-                    </CtaButton>
-                    <SlideAnimation trigger={triggerAnimation}/>
-                </Cta>
+                {link && (
+                    <Cta href={link} target="_blank" rel="noopener noreferrer">
+                        <CtaButton>
+                            {text.open_website}
+                        </CtaButton>
+                        <SlideAnimation trigger={triggerAnimation}/>
+                    </Cta>
+                )}
             </Content>
         </Container>
      )
