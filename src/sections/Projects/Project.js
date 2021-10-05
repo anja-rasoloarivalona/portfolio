@@ -35,6 +35,14 @@ const Container = styled.div`
         position: relative;
         z-index: 2;
     }
+
+    @media screen and (max-width: 810px){
+        height: 40rem;
+        justify-content: flex-start;
+        overflow: hidden;
+        // border-radius: 1rem;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+    }
 `
 
 const ImageContainer = styled.a`
@@ -48,23 +56,24 @@ const ImageContainer = styled.a`
     transition: all .5s linear;
     transition-delay: .5s;
     
-    // &:before {
-    //     content: "";
-    //     position: absolute;
-    //     top: 0;
-    //     left: 0;
-    //     width: 100%;
-    //     height: 100%;
-    //     z-index: 4;
-    //     background: ${({ theme }) => theme.darkBlue};
-    //     mix-blend-mode: color;
-    // }
+    @media screen and (max-width: 810px){
+        width: 100%;
+        bottom: 0;
+        height: 40rem;
+        margin: auto;
+        overflow: hidden;
 
-    // :hover {
-    //     &:before {
-    //         mix-blend-mode: lighten;
-    //     }
-    // }
+        :before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+            background: #071630f0;
+        }
+    }
 
     ${({ link }) => {
         if(link){
@@ -89,6 +98,13 @@ const Image = styled.img`
     height: 100%;
     object-fit: contain;
     border-radius: .5rem;   
+
+    @media screen and (max-width: 810px){
+        position: relative;
+        z-index: 1;
+        object-fit: unset;
+        width: unset;
+    }
 `
 
 const Content = styled.div`
@@ -100,6 +116,12 @@ const Content = styled.div`
     height: 100%;
     position: relative;
     z-index: 2;
+
+    @media screen and (max-width: 810px){
+        align-items: flex-start;
+        padding: 0 2.5rem;
+        width: 100%;
+    }
 `
 
 const Title = styled.div`
@@ -133,10 +155,21 @@ const Text = styled.div`
         box-shadow: ${props => props.theme.boxShadow};
         background: ${props => props.theme.blue};
     }
+
+    @media screen and (max-width: 810px){
+        background: none !important;
+        color: ${({ theme }) => theme.darkGrey};
+        padding: 2rem 0;
+    }
+
+    @media screen and (max-width: 555px){
+        padding: 0rem;
+    }
 `
 
 const Cta = styled.a`
     margin-top: 1rem;
+    text-decoration: none !important;
 `
 
 const CtaButton = styled.div`
@@ -147,6 +180,7 @@ const CtaButton = styled.div`
     border-radius: .5rem;
     transition: all .3s linear;
     cursor: pointer;
+
     :hover {
         background: ${props => props.theme.greenTransparent};
     }

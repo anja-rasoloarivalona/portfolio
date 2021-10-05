@@ -7,7 +7,7 @@ import * as actions from '../../store/actions'
 
 const Container = styled.div`
     width: 100vw;
-    height: 80vh;
+    min-height: 80vh;
     display: flex;
     justify-content: center;
     padding-bottom: 4rem;
@@ -18,6 +18,12 @@ const Container = styled.div`
 const Content = styled.div`
     width: 95%;
     max-width: 90rem;
+
+    @media screen and (max-width: 1000px){
+        max-width: unset;
+        width: 100%;
+        padding: 0 4rem;
+    }
 `
 
 const Header = styled.div`
@@ -53,11 +59,15 @@ const Text = styled.span`
     span {
         color: ${({ theme }) => theme.green}
     }
+
 `
 
 const ViewContainer = styled.div`
     margin: 4rem 0;
     display: flex;
+    @media screen and (max-width: 850px){
+        flex-direction: column;
+    }
 `
 
 const View = styled.div`
@@ -71,6 +81,11 @@ const View = styled.div`
     font-family: Lato;
     span {
         color: ${({ theme }) => theme.green}
+    }
+    @media screen and (max-width: 850px){
+        text-indent: 0rem;
+        padding-left: 0rem;
+        min-height: 40vh;
     }
 `
 

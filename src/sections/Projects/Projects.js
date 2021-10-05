@@ -17,6 +17,12 @@ const Container = styled.div`
 const Content = styled.div`
     width: 95%;
     max-width: 90rem;
+
+    @media screen and (max-width: 1000px){
+        max-width: unset;
+        width: 100%;
+        padding: 0 4rem;
+    }
 `
 
 const Header = styled.div`

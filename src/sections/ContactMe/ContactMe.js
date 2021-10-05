@@ -4,11 +4,23 @@ import { useSelector } from 'react-redux'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
 const Container = styled.div`
-    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    transform: translateY(-5rem);
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 90vh;
+    width: 100%;
+    margin-top: 10vh;
+    z-index: 3;
+    background: ${({ theme }) => theme.lightBlue};
+    overflow-y: scroll;
+    padding-bottom: 10vh;
+
+    @media screen and (max-width: 664px){
+        padding: 3rem 4rem;
+    }
 `
 
 const Title = styled.div`
@@ -18,6 +30,10 @@ const Title = styled.div`
     max-width: 65rem;
     line-height: 1.4;
     color: ${({ theme }) => theme.brightGrey};
+
+    @media screen and (max-width: 830px){
+        font-size: 2.5rem;
+    }
 `
 
 const Form = styled.form`
@@ -57,6 +73,10 @@ const FormGroup = styled.div`
     &.spread {
         grid-column: 1 / -1;
     }
+
+    @media screen and (max-width: 560px){
+        grid-column: 1 / -1;
+    }
 `
 
 const FormLabel = styled.label`
@@ -72,6 +92,8 @@ const FormInput = styled.input`
 `
 
 const FormTextArea = styled.textarea`
+    resize: vertical;
+    max-height: 50vh;
     :focus {
         outline: none;
     } 

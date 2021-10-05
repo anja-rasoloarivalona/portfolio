@@ -5,6 +5,14 @@ const List = styled.ul`
     width: 8rem;
     list-style: none;
     position: relative;
+
+    @media screen and (max-width: 850px){
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        margin-bottom: 2rem;
+    }
 `
 
 const ListItem = styled.li`
@@ -15,8 +23,6 @@ const ListItem = styled.li`
     justify-content: center;
     color: ${( { theme }) => theme.darkGrey};
     cursor: pointer;
-    border-top-right-radius: .5rem;
-    border-bottom-right-radius: .5rem;
     font-weight: bold;
     :hover {
         color: white;
@@ -27,7 +33,11 @@ const ListItem = styled.li`
                 color: theme.green + "!important"
             }
         }
-    }}
+    }};
+
+    @media screen and (max-width: 850px){
+        width: 100%;
+    }
 `
 
 const ListScroll = styled.div`
@@ -39,6 +49,12 @@ const ListScroll = styled.div`
     z-index: 1;
     border-radius: .5rem;
     overflow: hidden;
+
+    @media screen and (max-width: 850px){
+        bottom: 0;
+        width: 100%;
+        height: 2px;
+    }
 `
 
 const ListScrollThumb = styled.div`
@@ -52,6 +68,12 @@ const ListScrollThumb = styled.div`
     border-radius: .5rem;
     transform: translateY(${({ periodIndex }) => periodIndex * 6}rem);
     transition: all .3s ease-in;
+
+    @media screen and (max-width: 850px){
+        width: 25%;
+        height: 2px;
+        transform: translateX(${({ periodIndex }) => periodIndex * 100}%);
+    }
 `
 
 const Sidebar = props => {

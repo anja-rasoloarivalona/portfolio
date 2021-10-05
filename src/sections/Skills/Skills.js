@@ -20,6 +20,19 @@ const Container = styled.div`
     * {
         line-height: 1.4;
     }
+
+    @media screen and (max-width: 1325px){
+        height: unset;
+        min-height: 100vh;
+    }
+
+    @media screen and (max-height: 700px){
+        padding-top: 20vh;
+    }
+
+    @media screen and (max-width: 610px){
+        padding-top: 15vh;
+    }
 `
 
 const Content = styled.div`
@@ -29,7 +42,7 @@ const Content = styled.div`
     position: relative;
     z-index: 2;
     border-radius: .5rem;
-    @media screen and (max-width: 1200px){
+    @media screen and (max-width: 1325px){
         height: max-content;
     }
 `
@@ -94,7 +107,7 @@ const Section = styled.div`
         z-index: 2;
     }
 
-    @media screen and (max-width: 1200px){
+    @media screen and (max-width: 1325px){
         position: relative;
         margin: unset;
         opacity: 1;
@@ -153,8 +166,8 @@ const SliderContainer = styled.div`
     }
 
     .slick-list {
-        width: 100vw;
-        @media screen and (max-width: 430px) {
+        width: calc(100vw - 15rem);
+        @media screen and (max-width: 1200px) {
             width: 100vw;
         }
     }
@@ -204,7 +217,7 @@ const Skills = props => {
     } = useSelector(state => state)
 
     const { windowHeight, windowWidth } = useWindowSize()
-    const useMobile = windowWidth <= 1200 
+    const useMobile = windowWidth <= 1325 
 
     const [ played, setPlayed ] = useState(false)
 

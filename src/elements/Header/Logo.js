@@ -3,6 +3,8 @@ import styled from "styled-components"
 
 const Container = styled.div`
     transition: all .3s ease-in;
+    position: relative;
+    z-index: 4;
 `
 
 const Name = styled.div`
@@ -12,15 +14,12 @@ const Name = styled.div`
     cursor: pointer;
 `
 
-const Logo = props => {
-    const { showContent } = props
-
+const Logo = () => {
     const reloadHandler = () => {
         window.location.reload();
     }
-
     return (
-        <Container show={showContent}>
+        <Container>
             <Name onClick={reloadHandler}>
                 Anja.
             </Name>

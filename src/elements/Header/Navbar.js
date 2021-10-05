@@ -3,7 +3,6 @@ import styled from "styled-components"
 import { useSelector, useDispatch} from 'react-redux'
 import * as actions from '../../store/actions'
 import ContactMe from '../../sections/ContactMe/ContactMe'
-import { toggleBodyScroll } from '../../functions'
 
 const Container = styled.div`
     ${({ show }) => {
@@ -28,6 +27,8 @@ const Container = styled.div`
 
 const ToggleContainer = styled.div`
     transition: all .3s ease-in;
+    position: relative;
+    z-index: 4;
 `
 
 const Toggle = styled.div`
@@ -67,7 +68,7 @@ const ToggleBar = styled.div`
 `
 
 const Menu = styled.div`
-    position: fixed;
+    position: absolute;
     top: -100vh;
     left: 0;
     z-index: 2;
@@ -110,7 +111,7 @@ const MenuListItem = styled.li`
 
 const Navbar = props => {
 
-    const { showContent, showContact, setShowContact } = props
+    const {  showContact, setShowContact } = props
     const dispatch = useDispatch()
 
     const { text, locale } = useSelector(state => state)
@@ -162,7 +163,7 @@ const Navbar = props => {
 
     return (
         <Container show={show}>
-            <ToggleContainer onClick={() => setShow(prev => !prev)} showContent={showContent}>
+            <ToggleContainer onClick={() => setShow(prev => !prev)}>
                 <Toggle>
                     <ToggleBar className="top" />
                     <ToggleBar className="mid left" />

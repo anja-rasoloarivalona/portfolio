@@ -28,6 +28,12 @@ const Content = styled.div`
     align-items: flex-start;
     width: 95%;
     max-width: 90rem;
+
+    @media screen and (max-width: 1000px){
+        max-width: unset;
+        width: 100%;
+        padding: 0 4rem;
+    }
     
     * {
         position: relative;
@@ -39,6 +45,14 @@ const IntroText = styled.div`
     font-size: 1.6em;
     font-weight: 400;
     color: ${props => props.theme.green};
+
+    @media screen and (max-width: 740px){
+        font-size: 1.4rem;
+    }
+
+    @media screen and (max-width: 512px){
+        font-size: 1.3rem;
+    }
 `
 
 const Title = styled.div`
@@ -46,6 +60,18 @@ const Title = styled.div`
     font-weight: 700;
     color: ${props => props.theme.white};
     line-height: 1.5;
+
+    @media screen and (max-width: 960px){
+        font-size: 6rem;
+    }
+
+    @media screen and (max-width: 740px){
+        font-size: 4.5rem;
+    }
+
+    @media screen and (max-width: 512px){
+        font-size: 3.5rem;
+    }
 `
 
 const SubTitle = styled.div`
@@ -53,6 +79,18 @@ const SubTitle = styled.div`
     font-weight: 600;
     color: ${props => props.theme.lightGrey};
     padding-left: 4px;
+
+    @media screen and (max-width: 960px){
+        font-size: 3rem;
+    }
+
+    @media screen and (max-width: 740px){
+        font-size: 2rem;
+    }
+
+    @media screen and (max-width: 512px){
+        font-size: 1.6rem;
+    }
 `
 
 const Cta = styled.div`
@@ -75,6 +113,14 @@ const CtaButton = styled.div`
     cursor: pointer;
     :hover {
         background: ${props => props.theme.greenTransparent};
+    }
+
+    @media screen and (max-width: 740px){
+        font-size: 1.4rem;
+    }
+
+    @media screen and (max-width: 512px){
+        font-size: 1.3rem;
     }
 `
 const CtaIcon = styled.div`

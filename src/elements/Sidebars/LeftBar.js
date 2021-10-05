@@ -126,7 +126,7 @@ const LeftBar = props => {
             <IconsList>
                 {list.map((item, index) => (
                     <IconsListItem key={index}>
-                        <IconsListItemLink href={item.link} target="_blank" rel="noopener">
+                        <IconsListItemLink href={item.link} target="_blank" rel="noopener noreferrer">
                             <IconsListItemIconContainer>
                                 <Icon icon={item.icon}/>
                                 <ToolTip className="tooltip">

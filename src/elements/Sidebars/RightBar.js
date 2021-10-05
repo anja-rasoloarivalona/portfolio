@@ -22,7 +22,7 @@ const EmailContainer = styled.div`
     position: relative;
 `
 
-const Email = styled.div`
+const Email = styled.a`
     position: absolute;
     top: -4rem;
     left: 100%;
@@ -35,8 +35,13 @@ const Email = styled.div`
     align-items: center;
     padding-right: 4rem;
     font-size: 1.6rem;
-    color: ${({ theme }) => theme.darkGrey};
+    color: ${({ theme }) => theme.darkGrey} !important;
     cursor: pointer;
+    text-decoration: none !important;
+
+    :hover {
+        color: ${({ theme }) => theme.green} !important;
+    }
 
 `
 
@@ -47,7 +52,7 @@ const RightBar = props => {
     return (
         <Container show={show}>
             <EmailContainer>
-                <Email>
+                <Email href="mailto:rasoloanja@gmail.com">
                     rasoloanja@gmail.com
                 </Email>
             </EmailContainer>
