@@ -123,11 +123,11 @@ const Landing = props  => {
     const scrollHandler = () => {
         if(isMobile){
             toggleBodyScroll(true)
-            setTimeout(() => {
-                setDisabledLandingAnimation(true)
-            },2000)
         }
         scrollTo(`trigger-end`, 1000)
+        setTimeout(() => {
+            setDisabledLandingAnimation(true)
+        },2000)
     }
 
     useEffect(() => {

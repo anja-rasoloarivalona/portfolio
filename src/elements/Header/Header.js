@@ -31,8 +31,11 @@ const Header = props => {
     const { showContent, showContact, setShowContact, disableLandingAnimation } = props
 
     const [ show, setShow ] = useState(showContent)
+    const [ isMobileInitialized, setIsMobileInitialized ] = useState(false)
+
     const { scrollY, scrollDirection } = useScroll()
     const { windowWidth, windowHeight } = useWindowSize()
+
 
 
     // useEffect(() => {
@@ -46,32 +49,29 @@ const Header = props => {
 
 
     useEffect(() => {
-        
-        const triggerPos =  windowHeight
-
-        // console.log({
-        //     scrollDirection,
-        //     show,
-        //     showContact,
-        //     showContent,
-        //     scrollY,
-        //     triggerPos,
-        // })
-
-        if(showContact || (showContent && windowWidth > 1200)){
+        if(showContact || showContent){
             setShow(true)
-        } else {        
-            if(windowWidth <= 1200 && scrollY >= triggerPos){
-                if(scrollDirection === "up" && show){
-                    setShow(false)
+        }
+    },[showContact, showContent ])
+
+    useEffect(() => {
+        if(windowWidth <= 1200){
+            if(isMobileInitialized){
+                if(scrollY > 0 ){
+                    if(scrollDirection === "up" && show){
+                        setShow(false)
+                    }
+                    if(scrollDirection === "down" && !show){
+                        setShow(true)
+                    }
                 }
-                if(scrollDirection === "down" && !show){
-                    setShow(true)
+            } else {
+                if(disableLandingAnimation && !isMobileInitialized){
+                    setIsMobileInitialized(true)
                 }
             }
         }
-        
-    }, [scrollY, scrollDirection, windowWidth, windowHeight, disableLandingAnimation, showContent, showContact])
+    }, [scrollY, scrollDirection, windowWidth, windowHeight])
 
 
     return (
