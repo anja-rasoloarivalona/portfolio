@@ -4,7 +4,8 @@ import landing from '../../assets/landing.jpg'
 import { useSelector } from 'react-redux'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { scrollTo, toggleBodyScroll } from '../../functions'
-import { useWindowSize } from '../../hooks'
+import { isMobile } from 'react-device-detect'
+
 
 const Container = styled.div`
     width: 100vw;
@@ -112,13 +113,20 @@ const Cta = styled.div`
     }
 `
 
-const Landing = () => {
+const Landing = props  => {
 
     const {  text } = useSelector(state =>state)
 
+    const { disableLandingAnimation, setDisabledLandingAnimation } = props
     const [ show, setShow ] = useState(false)
 
     const scrollHandler = () => {
+        if(isMobile){
+            toggleBodyScroll(true)
+            setTimeout(() => {
+                setDisabledLandingAnimation(true)
+            },2000)
+        }
         scrollTo(`trigger-end`, 1000)
     }
 
@@ -127,10 +135,16 @@ const Landing = () => {
         setTimeout(() => {
             setShow(true)
         },500)
-        setTimeout(() => {
-            toggleBodyScroll(true)
-        },3000)
+        if(!isMobile){
+            setTimeout(() => {
+                toggleBodyScroll(true)
+            },3000)
+        }
     },[])
+
+    if(disableLandingAnimation){
+        return null
+    }
 
     return (
         <Container show={show}>

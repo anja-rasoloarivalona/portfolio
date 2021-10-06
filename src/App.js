@@ -42,6 +42,14 @@ const AnimationContainer = styled.div`
 const LandingContainer = styled(AnimationContainer)`
     transform-origin: bottom;
     z-index: 3;
+
+    ${({ disableLandingAnimation }) => {
+        if(disableLandingAnimation){
+            return {
+                display: "none"
+            }
+        }
+    }}
 `
 
 const ContentContainer = styled(AnimationContainer)`
@@ -72,6 +80,7 @@ const App = () => {
     const [ scroll, setScroll ] = useState(0)
     const [ showContact, setShowContact ] = useState(false)
     const [ showContent, setShowContent ] = useState(false)
+    const [ disableLandingAnimation, setDisabledLandingAnimation ] = useState(false)
     
     useEffect(() => {
         window.scrollTo(0, 0)
@@ -91,7 +100,7 @@ const App = () => {
     }
 
     useEffect(() => {
-        if(scroll >= windowHeight){
+        if(scroll >= windowHeight || (disableLandingAnimation)){
             let timeout
             clearTimeout(timeout)
             timeout = setTimeout(() => {
@@ -100,7 +109,7 @@ const App = () => {
         } else {
             setShowContent(false)
         }
-    },[scroll, windowHeight])
+    },[scroll, windowHeight, disableLandingAnimation])
 
     if(!text){
         return null
@@ -115,14 +124,18 @@ const App = () => {
                 showContact={showContact} 
                 setShowContact={setShowContact}
                 showContent={showContent}
+                disableLandingAnimation={disableLandingAnimation}
             />
             <Container>
                 <Timeline
                     target={(
                         <>
-                            <LandingContainer className="landing" id="landing">
-                                <Landing />
+                            <LandingContainer className="landing" id="landing" disableLandingAnimation={disableLandingAnimation}>
+                                <Landing 
+                                    setDisabledLandingAnimation={setDisabledLandingAnimation}
+                                />
                             </LandingContainer>
+                         
                             <ContentContainer inFront={scroll >= windowHeight / 2}>
                                 <Intro
                                     showContent={showContent} 
@@ -132,9 +145,13 @@ const App = () => {
                         </>
                     )}
                 >
-                    <AppAnimation setScroll={setScroll}/>
-                    <Trigger className="trigger-start" />
-                    <Trigger className="trigger-end" />
+                    {!disableLandingAnimation && (
+                        <>
+                            <AppAnimation setScroll={setScroll} />
+                            <Trigger className="trigger-start" />
+                            <Trigger className="trigger-end" />
+                        </>
+                    )}
                 </Timeline>
                 {showContent && (
                     <>
