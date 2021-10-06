@@ -3,6 +3,8 @@ import styled from "styled-components"
 import { Wrapper, Bar } from './style'
 import Icon from '../../icons'
 import { useSelector } from 'react-redux'
+import cv from '../../assets/cv.pdf'
+
 
 const Container = styled(Wrapper)`
     left: 0rem;
@@ -118,7 +120,7 @@ const LeftBar = props => {
     const list = [
         {icon: "github", text: "Github", link: "https://github.com/anja-rasoloarivalona"},
         {icon: "linkedin", text: "LinkedIn", link: "https://www.linkedin.com/in/anja-rasoloarivalona/"},
-        {icon: "cv", text: text.download_cv},
+        {icon: "cv", text: text.download_cv, link: cv },
     ]
 
     return (
