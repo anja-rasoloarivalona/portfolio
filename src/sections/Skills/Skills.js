@@ -111,6 +111,8 @@ const Section = styled.div`
         position: relative;
         margin: unset;
         opacity: 1;
+        width: 100%;
+        max-width: 35rem;
     }
 `
 
@@ -185,10 +187,11 @@ const SliderContainer = styled.div`
 
     .slick-slide {
         margin: 0 2.5rem;
-      }
-      .slick-list {
+    }
+
+    .slick-list {
         margin: 0 -2.5rem;
-      }
+    }
 
     .slick-slide > div{
         width: 100%;
@@ -277,10 +280,12 @@ const Skills = props => {
         dots: true,
         infinite: false,
         speed: 50,
-        slidesToShow: Math.min(windowWidth / 400, 3),
+        slidesToShow: Math.min(windowWidth / 350, 3) >= 1 ? Math.min(windowWidth / 350, 3) : 1,
         slidesToScroll: 1,
         arrows: false,
+        swipe: true
     }
+
 
     const renderSections = () => {
         return sections.map(section => (
