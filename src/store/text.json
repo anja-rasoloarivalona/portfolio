@@ -27,6 +27,10 @@
         "fr": "Nous avons <span>atteint cet objectif</span> plus tôt cette année, en mai, lorsque nous avons enfin débranché notre ancienne technologie. Ce fut une expérience très enrichissante, j'ai beaucoup appris car j'étais également très impliqué dans le back-end. Aujourd'hui, nous maintenons et améliorons la technologie en fonction des besoins de nos clients.",
         "en": "We've <span>completed that goal</span> earlier this year in May, when we finally unplugged our old technology. It was a richfull experience, I learnt a lot as I was also deeply involved in the backend side. Today, we are maintaining and improving the technology according to our clients needs."
     },
+    "back": {
+        "fr": "Retour",
+        "en": "Back"
+    },
     "back_end": {
         "fr": "Back-end",
         "en": "Back-end"
@@ -34,6 +38,10 @@
     "budget": {
         "fr": "Budget",
         "en": "Budget"
+    },
+    "confirmation_text": {
+        "fr": "Merci de m'avoir contacté ! Je vous répondrai aussitôt que possible.",
+        "en": "Thanks for reaching out! I'll get back you as soon as possible."
     },
     "contact": {
         "fr": "Contact",
@@ -78,6 +86,14 @@
     "en_locale": {
         "fr": "Anglais",
         "en": "English"
+    },
+    "form_required": {
+        "fr": "Requis",
+        "en": "Required"
+    },
+    "form_invalid_email": {
+        "fr": "Adresse email invalide",
+        "en": "Invalid email address"
     },
     "fr_locale": {
         "fr": "Français",

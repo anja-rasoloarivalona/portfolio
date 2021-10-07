@@ -78,8 +78,9 @@ const App = () => {
     const { text, locale } = useSelector(state => state)
 
     const [ scroll, setScroll ] = useState(0)
-    const [ showContact, setShowContact ] = useState(false)
     const [ showContent, setShowContent ] = useState(false)
+
+    const [ showContact, setShowContact ] = useState(false)
     const [ disableLandingAnimation, setDisabledLandingAnimation ] = useState(false)
     
     useEffect(() => {
@@ -123,7 +124,7 @@ const App = () => {
             <Header
                 showContact={showContact} 
                 setShowContact={setShowContact}
-                showContent={showContent}
+                showContent={showContent}                
                 disableLandingAnimation={disableLandingAnimation}
             />
             <Container>

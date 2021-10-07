@@ -31,6 +31,7 @@ const Header = props => {
     const { showContent, showContact, setShowContact, disableLandingAnimation } = props
 
     const [ show, setShow ] = useState(showContent)
+    const [ showMenu, setShowMenu ] = useState(false)
     const [ isMobileInitialized, setIsMobileInitialized ] = useState(false)
 
     const { scrollY, scrollDirection } = useScroll()
@@ -55,7 +56,7 @@ const Header = props => {
     },[showContact, showContent ])
 
     useEffect(() => {
-        if(windowWidth <= 1200){
+        if(windowWidth <= 1200 && !showContact && !showMenu){
             if(isMobileInitialized){
                 if(scrollY > 0 ){
                     if(scrollDirection === "up" && show){
@@ -83,6 +84,8 @@ const Header = props => {
             <Navbar 
                 showContact={showContact} 
                 setShowContact={setShowContact}
+                showMenu={showMenu}
+                setShowMenu={setShowMenu}
             />
         </Container>
      )

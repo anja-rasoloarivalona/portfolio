@@ -5,8 +5,8 @@ import * as actions from '../../store/actions'
 import ContactMe from '../../sections/ContactMe/ContactMe'
 
 const Container = styled.div`
-    ${({ show }) => {
-        if(show){
+    ${({ showMenu }) => {
+        if(showMenu){
             return {
                 ".top, .bottom": {
                     width: 0
@@ -111,23 +111,22 @@ const MenuListItem = styled.li`
 
 const Navbar = props => {
 
-    const {  showContact, setShowContact } = props
+    const {  showContact, setShowContact, showMenu, setShowMenu } = props
     const dispatch = useDispatch()
 
     const { text, locale } = useSelector(state => state)
 
-    const [ show, setShow ] = useState(false)
     const [ useLightBg, setUseLightBg ] = useState(false)
 
 
     useEffect(() => {
-        if(showContact && !show){
-            setShow(true)
+        if(showContact && !showMenu){
+            setShowMenu(true)
         }
     },[showContact])
 
     useEffect(() => {
-        if(show){
+        if(showMenu){
             let timeout;
             clearTimeout(timeout)
             timeout = setTimeout(() => {
@@ -137,7 +136,7 @@ const Navbar = props => {
             setUseLightBg(false)
             setShowContact(false)
         }
-    },[show])
+    },[showMenu])
     
     const scrollTo = (id) => {
         document.getElementById(id).scrollIntoView({behavior: "instant"})
@@ -145,11 +144,17 @@ const Navbar = props => {
 
     const onClickHandler = (item) => {
         if(item.id){
-            setShow(false)
+            setShowMenu(false)
             scrollTo(item.id)
         } else {
             item.action()
         }
+    }
+
+
+    const closeHandler = () => {
+        setShowMenu(false)
+        setShowContact(false)
     }
 
     const nextLocale = locale === "en" ? "fr" : "en"
@@ -162,8 +167,8 @@ const Navbar = props => {
     ]
 
     return (
-        <Container show={show}>
-            <ToggleContainer onClick={() => setShow(prev => !prev)}>
+        <Container showMenu={showMenu}>
+            <ToggleContainer onClick={() => setShowMenu(prev => !prev)}>
                 <Toggle>
                     <ToggleBar className="top" />
                     <ToggleBar className="mid left" />
@@ -174,7 +179,9 @@ const Navbar = props => {
             
             <Menu className="menu" useLightBg={useLightBg}>
                 {showContact ?
-                    <ContactMe /> :
+                    <ContactMe 
+                        closeHandler={closeHandler}
+                    /> :
                     <MenuList>
                         {sections.map((section, index) => (
                             <MenuListItem key={index} onClick={() => onClickHandler(section)}>
