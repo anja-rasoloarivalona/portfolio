@@ -11,11 +11,13 @@ const Container = styled.div`
     position: fixed;
     top: 0;
     left: 0;
-    min-height: 100vh;
+    height: 100vh;
     width: 100%;
     padding-top: 10vh;
+    padding-bottom: 10vh;
     z-index: 3;
     background: ${({ theme }) => theme.lightBlue};
+    overflow-y: overlay;
 
     * {
         font-family: Open Sans;
