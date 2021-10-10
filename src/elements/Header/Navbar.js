@@ -113,30 +113,23 @@ const Navbar = props => {
 
     const {  showContact, setShowContact, showMenu, setShowMenu } = props
     const dispatch = useDispatch()
-
     const { text, locale } = useSelector(state => state)
-
     const [ useLightBg, setUseLightBg ] = useState(false)
 
 
     useEffect(() => {
-        if(showContact && !showMenu){
-            setShowMenu(true)
-        }
-    },[showContact])
-
-    useEffect(() => {
-        if(showMenu){
+        if(showMenu || showContact){
             let timeout;
             clearTimeout(timeout)
             timeout = setTimeout(() => {
-                setUseLightBg(true)
+                openHandler()
             },200)
         } else {
             setUseLightBg(false)
             setShowContact(false)
+            setShowMenu(false)
         }
-    },[showMenu])
+    },[showMenu, showContact])
     
     const scrollTo = (id) => {
         document.getElementById(id).scrollIntoView({behavior: "instant"})
@@ -151,10 +144,23 @@ const Navbar = props => {
         }
     }
 
+    const toggleHandler = () => {
+        if(!showMenu && !showContact){
+            openHandler()
+        } else {
+            closeHandler()
+        }
+    }
+
+    const openHandler = () => {
+        setShowMenu(true)
+        setUseLightBg(true)
+    }
 
     const closeHandler = () => {
         setShowMenu(false)
         setShowContact(false)
+        setUseLightBg(false)
     }
 
     const nextLocale = locale === "en" ? "fr" : "en"
@@ -168,7 +174,7 @@ const Navbar = props => {
 
     return (
         <Container showMenu={showMenu}>
-            <ToggleContainer onClick={() => setShowMenu(prev => !prev)}>
+            <ToggleContainer onClick={toggleHandler}>
                 <Toggle>
                     <ToggleBar className="top" />
                     <ToggleBar className="mid left" />

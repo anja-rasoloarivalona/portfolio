@@ -3,6 +3,7 @@ import styled from "styled-components"
 import Logo from './Logo'
 import Navbar from "./Navbar"
 import { useScroll, useWindowSize } from '../../hooks'
+import { isMobile } from 'react-device-detect'
 
 const Container = styled.div`
     width: 100vw;
@@ -27,52 +28,42 @@ const Container = styled.div`
 `
 
 const Header = props => {
-
-    const { showContent, showContact, setShowContact, disableLandingAnimation } = props
-
+    const { showContent, showContact, setShowContact } = props
     const [ show, setShow ] = useState(showContent)
     const [ showMenu, setShowMenu ] = useState(false)
     const [ isMobileInitialized, setIsMobileInitialized ] = useState(false)
-
     const { scrollY, scrollDirection } = useScroll()
-    const { windowWidth, windowHeight } = useWindowSize()
-
-
-
-    // useEffect(() => {
-    //     if((showContent || showContact) && !show){
-    //         setShow(true)
-    //     }
-    //     if(!showContent && !showContact && show){
-    //         setShow(false)
-    //     }
-    // }, [showContent, showContact])
-
+    const { windowWidth } = useWindowSize()
 
     useEffect(() => {
-        if(showContact || showContent){
-            setShow(true)
-        }
-    },[showContact, showContent ])
-
-    useEffect(() => {
-        if(windowWidth <= 1200 && !showContact && !showMenu){
-            if(isMobileInitialized){
-                if(scrollY > 0 ){
-                    if(scrollDirection === "up" && show){
-                        setShow(false)
-                    }
-                    if(scrollDirection === "down" && !show){
-                        setShow(true)
-                    }
-                }
+        if(!isMobile || windowWidth > 1200){
+            if(showContact || showContent || showMenu){
+                setShow(true)
             } else {
-                if(disableLandingAnimation && !isMobileInitialized){
+                setShow(false)
+            }
+        } else {
+            if(showContact || showContent || showMenu){
+                if(!isMobileInitialized){
                     setIsMobileInitialized(true)
+                    setShow(true)
+                } else {
+                    if(showContact || showMenu){
+                        setShow(true)
+                    } else {
+                        if(scrollY > 0){
+                            if(scrollDirection === "up" && show){
+                                setShow(false)
+                            }
+                            if(scrollDirection === "down" && !show){
+                                setShow(true)
+                            }
+                        }
+                    }
                 }
             }
         }
-    }, [scrollY, scrollDirection, windowWidth, windowHeight])
+    },[showContact, showContent, showMenu, scrollY ])
 
 
     return (

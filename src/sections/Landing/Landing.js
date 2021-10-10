@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { scrollTo, toggleBodyScroll } from '../../functions'
 import { isMobile } from 'react-device-detect'
-
+import { useWindowSize } from '../../hooks'
 
 const Container = styled.div`
     width: 100vw;
@@ -116,31 +116,33 @@ const Cta = styled.div`
 const Landing = props  => {
 
     const {  text } = useSelector(state =>state)
-
     const { disableLandingAnimation, setDisabledLandingAnimation } = props
     const [ show, setShow ] = useState(false)
+    const { windowWidth } = useWindowSize()
+
+    useEffect(() => {
+        toggleBodyScroll(false)
+        setTimeout(() =>  setShow(true),500)
+        if(!isMobile || windowWidth > 1200){
+            setTimeout(() => {
+                toggleBodyScroll(true)
+            },2000)
+        }
+    },[])
 
     const scrollHandler = () => {
         if(isMobile){
             toggleBodyScroll(true)
         }
         scrollTo(`trigger-end`, 1000)
-        setTimeout(() => {
-            setDisabledLandingAnimation(true)
-        },2000)
+        if(isMobile && windowWidth < 1200){
+            setTimeout(() => {
+                setDisabledLandingAnimation(true)
+                window.scrollTo(0,0)
+            },1000)
+        }
     }
 
-    useEffect(() => {
-        toggleBodyScroll(false)
-        setTimeout(() => {
-            setShow(true)
-        },500)
-        if(!isMobile){
-            setTimeout(() => {
-                toggleBodyScroll(true)
-            },3000)
-        }
-    },[])
 
     if(disableLandingAnimation){
         return null
