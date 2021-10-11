@@ -17,7 +17,7 @@ const toggleBodyScroll = value => {
     } else {
         document.body.style.overflow = isFirefox ? 'auto' : 'overlay'
         document.body.style.position = 'initial'
-        document.body.style.height = 'initial'
+        document.body.style.height = '100%'
     }
 }
 
