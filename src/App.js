@@ -154,7 +154,8 @@ const App = () => {
                         </>
                     )}
                 </Timeline>
-                {showContent && (
+            </Container>
+            {showContent && (
                     <>
                         <Projects scroll={scroll} />
                         <Skills scroll={scroll}/>
@@ -162,7 +163,6 @@ const App = () => {
                         <ContactCta setShowContact={setShowContact} />
                     </>
                 )}
-            </Container>
         </ThemeProvider>
     )
 };
